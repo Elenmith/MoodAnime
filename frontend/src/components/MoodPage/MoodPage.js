@@ -10,12 +10,13 @@ function MoodPage() {
   const [error, setError] = useState(null); // Obsługa błędów
   const navigate = useNavigate(); // Hook do nawigacji
 
+  // Pobierz URL API z zmiennej środowiskowej
+  const API_URL = process.env.REACT_APP_API_URL;
+
   useEffect(() => {
     const fetchAnime = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:5000/api/anime/moods/${mood}`
-        );
+        const response = await axios.get(`${API_URL}/api/anime/moods/${mood}`);
         setAnimeList(response.data);
         setLoading(false);
       } catch (err) {
@@ -26,7 +27,7 @@ function MoodPage() {
     };
 
     fetchAnime();
-  }, [mood]);
+  }, [mood, API_URL]); // Dodano `API_URL` jako zależność
 
   if (loading) {
     return <p>Loading...</p>;
