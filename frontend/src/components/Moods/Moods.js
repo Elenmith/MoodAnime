@@ -7,11 +7,14 @@ const Moods = () => {
   const [moods, setMoods] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Pobierz URL backendu z zmiennej środowiskowej
+  const API_URL = process.env.REACT_APP_API_URL;
+
   useEffect(() => {
     // Funkcja pobierająca nastroje z backendu
     const fetchMoods = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/moods");
+        const response = await axios.get(`${API_URL}/api/moods`);
         setMoods(response.data);
       } catch (error) {
         console.error("Error fetching moods:", error.message);
@@ -21,7 +24,7 @@ const Moods = () => {
     };
 
     fetchMoods();
-  }, []);
+  }, [API_URL]); // Dodano `API_URL` jako zależność
 
   if (loading) return <p>Loading moods...</p>;
 
