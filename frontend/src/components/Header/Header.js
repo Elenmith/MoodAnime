@@ -12,12 +12,13 @@ function Logo() {
   );
 }
 
-// Zrobić settera do bazy na endpoint animeList na 3 elementy albo skorzystać z postera i
-// dopiero z niego wybrać title i go wypluć do searcha
 function SearchNav() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const navigate = useNavigate();
+
+  // Pobierz URL API z zmiennej środowiskowej
+  const API_URL = process.env.REACT_APP_API_URL;
 
   const searchAnime = async (animeId) => {
     if (!animeId) {
@@ -27,7 +28,7 @@ function SearchNav() {
 
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/anime/search?id=${animeId}`
+        `${API_URL}/api/anime/search?id=${animeId}` // Dynamiczny URL API
       );
       setResults([response.data]); // Wynik jest obiektem, więc opakowujemy go w tablicę
     } catch (error) {
