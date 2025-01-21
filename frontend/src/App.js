@@ -16,12 +16,15 @@ import About from "./components/About/About";
 function App() {
   const [animeList, setAnimeList] = useState([]);
 
+  // Pobierz URL backendu z zmiennej środowiskowej
+  const API_URL = process.env.REACT_APP_API_URL;
+
   useEffect(() => {
     axios
-      .get("http://localhost:5000/anime")
+      .get(`${API_URL}/anime`) // Użyj zmiennej środowiskowej dla adresu API
       .then((response) => setAnimeList(response.data))
       .catch((error) => console.error("Błąd podczas pobierania anime:", error));
-  }, []);
+  }, [API_URL]); // Dodaj API_URL jako zależność
 
   return (
     <Router>
