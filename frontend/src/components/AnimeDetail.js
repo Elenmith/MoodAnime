@@ -7,10 +7,13 @@ const AnimeDetail = () => {
   const [anime, setAnime] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // Pobierz URL backendu z zmiennej środowiskowej
+  const API_URL = process.env.REACT_APP_API_URL;
+
   useEffect(() => {
     const fetchAnimeDetails = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/anime/${id}`);
+        const response = await fetch(`${API_URL}/api/anime/${id}`);
         const data = await response.json();
         setAnime(data);
         setLoading(false);
@@ -21,7 +24,7 @@ const AnimeDetail = () => {
     };
 
     fetchAnimeDetails();
-  }, [id]);
+  }, [id, API_URL]); // Dodano `API_URL` jako zależność
 
   if (loading) {
     return <p>Loading...</p>;
@@ -60,6 +63,7 @@ const AnimeDetail = () => {
           </div>
         </div>
       </div>
+
       {/* Sekcja gatunków */}
       <div className="anime-genres">
         {anime.genres?.map((genre, index) => (
