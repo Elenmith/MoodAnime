@@ -1,0 +1,14 @@
+# Node.js
+node_modules/
+npm-debug.log
+
+# React
+
+# System
+.DS_Store
+<<<<<<< HEAD
+
+server.js
+.env
+
+>>>>>>> 26cc5630cc0a7535cbd876066dcfbb4cd45eb1e0
