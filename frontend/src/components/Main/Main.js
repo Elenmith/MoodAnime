@@ -14,6 +14,9 @@ function Main() {
   const [featuredAnime, setFeaturedAnime] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // Pobierz URL API z zmiennej środowiskowej
+  const API_URL = process.env.REACT_APP_API_URL;
+
   // Zmiana na LowerCase
   const handleInputChange = (e) => {
     const value = e.target.value.toLowerCase();
@@ -35,7 +38,7 @@ function Main() {
   useEffect(() => {
     const fetchAnime = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/anime/posters");
+        const response = await fetch(`${API_URL}/api/anime/posters`);
         const data = await response.json();
         setAnimeList(data); // Przechowujemy pełne dane anime
       } catch (err) {
@@ -44,15 +47,13 @@ function Main() {
     };
 
     fetchAnime();
-  }, []);
+  }, [API_URL]); // Dodano `API_URL` jako zależność
 
   // Ustawianie anime dnia
   useEffect(() => {
     const fetchFeaturedAnime = async () => {
       try {
-        const response = await fetch(
-          "http://localhost:5000/api/featured-anime/"
-        );
+        const response = await fetch(`${API_URL}/api/featured-anime/`);
         if (!response.ok) {
           throw new Error("Failed to fetch featured anime");
         }
@@ -66,7 +67,7 @@ function Main() {
     };
 
     fetchFeaturedAnime();
-  }, []);
+  }, [API_URL]); // Dodano `API_URL` jako zależność
 
   return (
     <main className="main">
