@@ -12,7 +12,6 @@ const CategoryDetail = () => {
   useEffect(() => {
     setLoading(true); // Rozpoczyna ładowanie przed fetch
     fetch(`${process.env.REACT_APP_API_URL}/api/categories/${genre}`)
-) // Port 5000 dla backendu
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
