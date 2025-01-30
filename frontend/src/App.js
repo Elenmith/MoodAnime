@@ -34,15 +34,12 @@ function App() {
           {/* Strona główna */}
           <Route path="/" element={<Main />} />
 
-          {/* Strona wyników dla nastrojów */}
-          <Route path="/moods/:mood" element={<MoodPage />} />
-
-          <Route path="/categories/:genre" element={<CategoryDetail />} />
-
           {/* Strona szczegółowa anime */}
           <Route path="/anime/:id" element={<AnimeDetail />} />
 
           <Route path="/categories" element={<Categories />} />
+
+          <Route path="/categories/:genre" element={<CategoryDetail />} />
 
           <Route path="/moods" element={<Moods />} />
 
