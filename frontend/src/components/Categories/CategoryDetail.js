@@ -14,6 +14,10 @@ const CategoryDetail = () => {
   console.log(genre);
   console.log("API_URL:", API_URL);
   console.log("Fetching from:", `${API_URL}/api/categories/${genre}`);
+  console.log("🚀 Renderowanie CategoryDetail!");
+console.log("📌 Otrzymany genre:", genre);
+console.log("📡 Pobieram dane z API:", `${API_URL}/api/categories/${genre}`);
+console.log("📝 Lista anime:", animeList);
 
   useEffect(() => {
   setLoading(true);
