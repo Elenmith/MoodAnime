@@ -9,18 +9,21 @@ const Categories = () => {
   if (loading) return <p>Loading categories...</p>;
   if (error) return <p>Error loading categories: {error}</p>;
 
-  return (
-    <div className="categories-container">
-      <h1>Categories</h1>
-      <ul>
-        {categories.map((category) => (
-          <li key={category}>
-            <Link to={`/categories/${category.toLowerCase()}`}>{category}</Link>
-          </li>
-        ))}
-      </ul>
+ return (
+  <div className="categories-page">
+    <h2>Categories</h2>
+    <div className="categories-grid">
+      {categories.map((category) => (
+        <button 
+          key={category} 
+          className="category-button"
+          onClick={() => (window.location.href = `/categories/${category.toLowerCase()}`)}
+        >
+          {category}
+        </button>
+      ))}
     </div>
-  );
-};
+  </div>
+);
 
 export default Categories;
