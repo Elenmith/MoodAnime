@@ -12,7 +12,7 @@ const CategoryDetail = () => {
   console.log(genre);
 
    // Pobierz URL API z zmiennej środowiskowej
-  const API_URL = process.env.REACT_APP_API_URL;
+  const API_URL = process.env.REACT_APP_API_URL || "https://mood-for-anime-443a0efbedff.herokuapp.com";
 
   useEffect(() => {
     setLoading(true); // Rozpoczyna ładowanie przed fetch
