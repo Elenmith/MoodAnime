@@ -17,9 +17,8 @@ const CategoryDetail = () => {
   console.log("API_URL:", API_URL);
   console.log("Fetching from:", `${API_URL}/api/categories/${genre}`);
   console.log("🚀 Renderowanie CategoryDetail!");
-console.log("📌 Otrzymany genre:", genre);
-console.log("📡 Pobieram dane z API:", `${API_URL}/api/categories/${genre}`);
-console.log("📝 Lista anime:", animeList);
+  console.log("📌 Otrzymany genre:", genre);
+  console.log("📡 Pobieram dane z API:", `${API_URL}/api/categories/${genre}`);
 
   useEffect(() => {
   setLoading(true);
@@ -38,9 +37,13 @@ console.log("📝 Lista anime:", animeList);
     }
   };
 
+    
+
   fetchAnime();
 }, [genre, API_URL]);
-    
+  
+  console.log("📝 Lista anime:", animeList);
+  
   if (loading) {
     return <div className="loading">Loading...</div>; // Wyświetla "Loading..." w trakcie ładowania
   }
