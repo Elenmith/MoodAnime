@@ -9,7 +9,6 @@ const Categories = () => {
   if (loading) return <p>Loading categories...</p>;
   if (error) return <p>Error loading categories: {error}</p>;
 
- return (
   return (
     <div className="categories-container">
       <h1>Categories</h1>
