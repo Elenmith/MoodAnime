@@ -1,41 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
+import { CategoryContext } from "../../context/CategoryContext";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import "./Categories.css";
 
 const Categories = () => {
-  const [categories, setCategories] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  const API_URL = process.env.REACT_APP_API_URL;
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const response = await axios.get(`${API_URL}/api/categories`);
-        setCategories(response.data);
-      } catch (error) {
-        console.error("Error fetching categories:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchCategories();
-  }, [API_URL]);
+  const { categories, loading, error } = useContext(CategoryContext);
 
   if (loading) return <p>Loading categories...</p>;
+  if (error) return <p>Error loading categories: {error}</p>;
 
   return (
-    <div className="categories-page">
-      <h2>Categories</h2>
-      <div className="categories-grid">
+    <div className="categories-container">
+      <h1>Categories</h1>
+      <ul>
         {categories.map((category) => (
-          <Link to={`/categories/${category.toLowerCase()}`} key={category} className="category-button">
-            {category}
-          </Link>
+          <li key={category}>
+            <Link to={`/categories/${category.toLowerCase()}`}>{category}</Link>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 };
