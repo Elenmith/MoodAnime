@@ -9,7 +9,9 @@ const CategoryDetail = () => {
   const [loading, setLoading] = useState(true); // Stan dla ładowania
   const [error, setError] = useState(null); // Obsługa błędów
   const navigate = useNavigate(); // Hook do nawigacji
-  const API_URL = "https://mood-for-anime-443a0efbedff.herokuapp.com";
+  
+  const API_URL = process.env.REACT_APP_API_URL || "https://mood-for-anime-443a0efbedff.herokuapp.com";
+
 
   console.log(genre);
   console.log("API_URL:", API_URL);
