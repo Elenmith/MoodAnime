@@ -4,6 +4,7 @@ import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { MoodProvider } from "./context/MoodContext";
+import { CategoryProvider } from "./context/CategoryContext"; 
 import MoodPage from "./components/MoodPage/MoodPage";
 import AnimeDetail from "./components/AnimeDetail";
 import Footer from "./components/Footer/Footer";
@@ -29,29 +30,31 @@ function App() {
   return (
     <Router>
       <MoodProvider>
-        <Header />
-        <Routes>
-  {/* Strona główna */}
-  <Route path="/" element={<Main />} />
-
-  {/* Strona szczegółowa anime */}
-  <Route path="/anime/:id" element={<AnimeDetail />} />
-
-  {/* Kategorie */}
-  <Route path="/categories" element={<Categories />} />
-  <Route path="/categories/:genre" element={<CategoryDetail />} />
-
-  {/* Nastroje */}
-  <Route path="/moods" element={<Moods />} />
-  <Route path="/moods/:mood" element={<MoodPage />} />
-
-  {/* Inne strony */}
-  <Route path="/about" element={<About />} />
-
-  {/* Obsługa nieznalezionych tras */}
-  <Route path="*" element={<NotFound />} />
-</Routes>
+        <CategoryProvider> 
+          <Header />
+          <Routes>
+            {/* Strona główna */}
+            <Route path="/" element={<Main />} />
+          
+            {/* Strona szczegółowa anime */}
+            <Route path="/anime/:id" element={<AnimeDetail />} />
+          
+            {/* Kategorie */}
+            <Route path="/categories" element={<Categories />} />
+            <Route path="/categories/:genre" element={<CategoryDetail />} />
+          
+            {/* Nastroje */}
+            <Route path="/moods" element={<Moods />} />
+            <Route path="/moods/:mood" element={<MoodPage />} />
+          
+            {/* Inne strony */}
+            <Route path="/about" element={<About />} />
+          
+            {/* Obsługa nieznalezionych tras */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
         <Footer />
+        </CategoryProvider>
       </MoodProvider>
     </Router>
   );
