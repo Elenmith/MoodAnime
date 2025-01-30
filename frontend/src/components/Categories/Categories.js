@@ -21,9 +21,9 @@ const Categories = () => {
         >
           {category}
         </button>
-      )}
+      ))}
     </div>
   </div>
-);
+)};
 
 export default Categories;
