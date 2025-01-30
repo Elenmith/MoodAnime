@@ -1,101 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 import "./Categories.css";
 
 const Categories = () => {
-  const categories = [
-    "Action",
-    "Adventure",
-    "Avant Garde",
-    "Award Winning",
-    "Boys Love",
-    "Comedy",
-    "Drama",
-    "Fantasy",
-    "Girls Love",
-    "Gourmet",
-    "Horror",
-    "Mystery",
-    "Romance",
-    "Sci-Fi",
-    "Slice of Life",
-    "Sports",
-    "Supernatural",
-    "Suspense",
-    "Ecchi",
-    "Erotica",
-    "Hentai",
-    "Adult Cast",
-    "Anthropomorphic",
-    "CGDCT",
-    "Childcare",
-    "Combat Sports",
-    "Crossdressing",
-    "Delinquents",
-    "Detective",
-    "Educational",
-    "Gag Humor",
-    "Gore",
-    "Harem",
-    "High Stakes Game",
-    "Historical",
-    "Idols (Female)",
-    "Idols (Male)",
-    "Isekai",
-    "Iyashikei",
-    "Love Polygon",
-    "Magical Sex Shift",
-    "Mahou Shoujo",
-    "Martial Arts",
-    "Mecha",
-    "Military",
-    "Music",
-    "Mythology",
-    "Organized Crime",
-    "Otaku Culture",
-    "Parody",
-    "Performing Arts",
-    "Pets",
-    "Psychological",
-    "Racing",
-    "Reincarnation",
-    "Reverse Harem",
-    "Love Status Quo",
-    "Samurai",
-    "School",
-    "Showbiz",
-    "Space",
-    "Strategy Game",
-    "Super Power",
-    "Survival",
-    "Team Sports",
-    "Time Travel",
-    "Vampire",
-    "Video Game",
-    "Visual Arts",
-    "Workplace",
-    "Urban Fantasy",
-    "Villainess",
-    "Josei",
-    "Kids",
-    "Seinen",
-    "Shoujo",
-    "Shounen",
-  ];
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const API_URL = process.env.REACT_APP_API_URL;
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/api/categories`);
+        setCategories(response.data);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCategories();
+  }, [API_URL]);
+
+  if (loading) return <p>Loading categories...</p>;
 
   return (
     <div className="categories-page">
       <h2>Categories</h2>
       <div className="categories-grid">
         {categories.map((category) => (
-          <button
-            key={category}
-            className="category-button"
-            onClick={() =>
-              (window.location.href = `/categories/${category.toLowerCase()}`)
-            }
-          >
+          <Link to={`/categories/${category.toLowerCase()}`} key={category} className="category-button">
             {category}
-          </button>
+          </Link>
         ))}
       </div>
     </div>
