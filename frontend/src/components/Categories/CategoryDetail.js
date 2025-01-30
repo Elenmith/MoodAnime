@@ -11,7 +11,7 @@ const CategoryDetail = () => {
 
   useEffect(() => {
     setLoading(true); // Rozpoczyna ładowanie przed fetch
-    fetch(`${process.env.REACT_APP_API_URL}/api/categories/${genre}`)
+    fetch(`${process.env.REACT_APP_API_URL}/categories/${genre}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
