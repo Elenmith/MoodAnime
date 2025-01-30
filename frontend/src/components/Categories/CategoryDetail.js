@@ -17,7 +17,7 @@ const CategoryDetail = () => {
 
     const fetchAnime = async () => {
       try {
-        const response = await axios.get(`${API_URL}/api/categories/${genre}`);
+        const response = await axios.get(`${API_URL}/api/anime/categories/${genre}`);
         setAnimeList(response.data);
         setLoading(false);
       } catch (err) {
