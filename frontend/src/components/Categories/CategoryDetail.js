@@ -12,24 +12,27 @@ const CategoryDetail = () => {
   console.log(genre);
 
    // Pobierz URL API z zmiennej środowiskowej
-  const API_URL = process.env.REACT_APP_API_URL || "https://mood-for-anime-443a0efbedff.herokuapp.com";
+  const API_URL = "https://mood-for-anime-443a0efbedff.herokuapp.com";
 
   useEffect(() => {
-    setLoading(true); // Rozpoczyna ładowanie przed fetch
+  setLoading(true);
 
-    const fetchAnime = async () => {
-      try {
-        const response = await axios.get(`${API_URL}/api/categories/${genre}`);
-        setAnimeList(response.data);
-        setLoading(false);
-      } catch (err) {
-        setError(err.message);
-        console.error("Błąd podczas pobierania anime:", err);
-        setLoading(false);
-      }
-    };
-    fetchAnime();
-  }, [genre, API_URL]);
+  const fetchAnime = async () => {
+    try {
+      console.log("Fetching from:", `${API_URL}/api/categories/${genre}`);
+      const response = await axios.get(`${API_URL}/api/categories/${genre}`);
+      console.log("Response:", response.data);
+      setAnimeList(response.data);
+      setLoading(false);
+    } catch (err) {
+      console.error("Błąd pobierania anime:", err);
+      setError(err.message);
+      setLoading(false);
+    }
+  };
+
+  fetchAnime();
+}, [genre, API_URL]);
     
   if (loading) {
     return <div className="loading">Loading...</div>; // Wyświetla "Loading..." w trakcie ładowania
