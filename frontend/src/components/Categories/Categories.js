@@ -10,16 +10,18 @@ const Categories = () => {
   if (error) return <p>Error loading categories: {error}</p>;
 
  return (
-  <div className="categories-container">
-    <h2>Categories</h2>
-    <div className="categories-grid">
-      {categories.map((category) => (
-        <li key={category}>
+  return (
+    <div className="categories-container">
+      <h1>Categories</h1>
+      <ul>
+        {categories.map((category) => (
+          <li key={category}>
             <Link to={`/categories/${category.toLowerCase()}`}>{category}</Link>
           </li>
-      ))}
+        ))}
+      </ul>
     </div>
-  </div>
-)};
+  );
+};
 
 export default Categories;
