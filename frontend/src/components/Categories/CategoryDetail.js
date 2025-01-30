@@ -17,7 +17,7 @@ const CategoryDetail = () => {
 
     const fetchAnime = async () => {
       try {
-        const response = await axios.get(`${API_URL}/api/anime/categories/${genre}`);
+        const response = await axios.get(`${API_URL}/api/categories/${genre}`);
         setAnimeList(response.data);
         setLoading(false);
       } catch (err) {
@@ -27,7 +27,7 @@ const CategoryDetail = () => {
       }
     };
     fetchAnime();
-  }, [mood, API_URL]);
+  }, [genre, API_URL]);
     
   if (loading) {
     return <div className="loading">Loading...</div>; // Wyświetla "Loading..." w trakcie ładowania
