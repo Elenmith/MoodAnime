@@ -9,25 +9,26 @@ const CategoryDetail = () => {
   const [error, setError] = useState(null); // Obsługa błędów
   const navigate = useNavigate(); // Hook do nawigacji
 
+   // Pobierz URL API z zmiennej środowiskowej
+  const API_URL = process.env.REACT_APP_API_URL;
+
   useEffect(() => {
     setLoading(true); // Rozpoczyna ładowanie przed fetch
-    fetch(`${process.env.REACT_APP_API_URL}/api/categories/${genre}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setAnimeList(data);
-        setLoading(false); // Kończy ładowanie po fetch
-      })
-      .catch((error) => {
-        setError(error.message);
-        setLoading(false); // Kończy ładowanie nawet przy błędzie
-      });
-  }, [genre]);
 
+    const fetchAnime = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/api/categories/${genre}`);
+        setAnimeList(response.data);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        console.error("Błąd podczas pobierania anime:", err);
+        setLoading(false);
+      }
+    };
+    fetchAnime();
+  }, [mood, API_URL]);
+    
   if (loading) {
     return <div className="loading">Loading...</div>; // Wyświetla "Loading..." w trakcie ładowania
   }
