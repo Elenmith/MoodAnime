@@ -10,6 +10,8 @@ const CategoryDetail = () => {
   const [error, setError] = useState(null); // Obsługa błędów
   const navigate = useNavigate(); // Hook do nawigacji
   console.log(genre);
+  console.log("API_URL:", API_URL);
+console.log("Fetching from:", `${API_URL}/api/categories/${genre}`);
 
    // Pobierz URL API z zmiennej środowiskowej
   const API_URL = "https://mood-for-anime-443a0efbedff.herokuapp.com";
