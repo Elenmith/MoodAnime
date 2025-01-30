@@ -21,7 +21,7 @@ const Categories = () => {
         >
           {category}
         </button>
-      ))}
+      )}
     </div>
   </div>
 );
