@@ -31,24 +31,26 @@ function App() {
       <MoodProvider>
         <Header />
         <Routes>
-          {/* Strona główna */}
-          <Route path="/" element={<Main />} />
+  {/* Strona główna */}
+  <Route path="/" element={<Main />} />
 
-          {/* Strona szczegółowa anime */}
-          <Route path="/anime/:id" element={<AnimeDetail />} />
+  {/* Strona szczegółowa anime */}
+  <Route path="/anime/:id" element={<AnimeDetail />} />
 
-          <Route path="/categories" element={<Categories />} />
+  {/* Kategorie */}
+  <Route path="/categories" element={<Categories />} />
+  <Route path="/categories/:genre" element={<CategoryDetail />} />
 
-          <Route path="/categories/:genre" element={<CategoryDetail />} />
+  {/* Nastroje */}
+  <Route path="/moods" element={<Moods />} />
+  <Route path="/moods/:mood" element={<MoodPage />} />
 
-          <Route path="/moods" element={<Moods />} />
+  {/* Inne strony */}
+  <Route path="/about" element={<About />} />
 
-          <Route path="/moods/:mood" element={<MoodPage />} />
-
-          <Route path="/about" element={<About />} />
-
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+  {/* Obsługa nieznalezionych tras */}
+  <Route path="*" element={<NotFound />} />
+</Routes>
         <Footer />
       </MoodProvider>
     </Router>
