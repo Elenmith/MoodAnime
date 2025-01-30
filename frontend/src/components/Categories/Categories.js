@@ -10,17 +10,13 @@ const Categories = () => {
   if (error) return <p>Error loading categories: {error}</p>;
 
  return (
-  <div className="categories-page">
+  <div className="categories-container">
     <h2>Categories</h2>
     <div className="categories-grid">
       {categories.map((category) => (
-        <button 
-          key={category} 
-          className="category-button"
-          onClick={() => (window.location.href = `/categories/${category.toLowerCase()}`)}
-        >
-          {category}
-        </button>
+        <li key={category}>
+            <Link to={`/categories/${category.toLowerCase()}`}>{category}</Link>
+          </li>
       ))}
     </div>
   </div>
