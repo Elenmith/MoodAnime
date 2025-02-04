@@ -9,7 +9,7 @@ const Footer = () => {
         <p>&copy; {new Date().getFullYear()} AnimeMood. All rights reserved.</p>
         <div className="footer-links">
           <Link to="/about" className="footer-link">
-            About Us
+            About Me
           </Link>
           <a href="/contact" className="footer-link">
             Contact
