@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./Header.css"; // Import stylów
+import "./Header.css"; 
 import { Link, useLocation } from "react-router-dom";
 
 function Logo() {
