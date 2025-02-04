@@ -16,13 +16,11 @@ const Categories = () => {
     Select a category to explore anime recommendations based on your favorite genres and themes.
     </p>
       <div className="categories-grid">
-        <ul>
           {categories.map((category) => (
             <li key={category}>
               <Link to={`/categories/${category.toLowerCase()}`}>{category}</Link>
             </li>
           ))}
-        </ul>
       </div>
     </div>
   );
