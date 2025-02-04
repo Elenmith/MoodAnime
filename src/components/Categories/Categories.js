@@ -10,7 +10,7 @@ const Categories = () => {
   if (error) return <p>Error loading categories: {error}</p>;
 
   return (
-    <div className="categories-container">
+    <div className="categories-page">
       <h1>Categories</h1>
       <ul>
         {categories.map((category) => (
