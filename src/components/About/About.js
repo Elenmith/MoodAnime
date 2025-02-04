@@ -5,19 +5,19 @@ const About = () => {
   return (
     <div className="about-container">
       <div className="about-content">
-        <h1>O mnie</h1>
-        <p>Cześć! Jestem [Twoje Imię], programistą i designerem, który stworzył ten projekt. Uwielbiam tworzyć nowoczesne aplikacje webowe, łącząc kod z estetyką i użytecznością.</p>
+        <h1>About me</h1>
+        <p>Hi! I'm Radek, a programmer and designer who created this project. I love building modern web applications, combining code with aesthetics and usability.</p>
         
-        <h2>Moje umiejętności</h2>
+        <h2>My skills</h2>
         <ul>
           <li>⚡ Frontend: React, JavaScript, HTML, CSS</li>
           <li>⚡ Backend: Node.js, Express, MongoDB</li>
-          <li>⚡ UI/UX: Projektowanie interfejsów, Figma</li>
+          <li>⚡ UI/UX: Design interfaces, Figma</li>
         </ul>
 
-        <h2>Kontakt</h2>
-        <p>Chcesz porozmawiać? Znajdziesz mnie tutaj:</p>
-        <a href="https://github.com/TWOJ_GITHUB" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <h2>Contact</h2>
+        <p>Want to talk? You can find me here:</p>
+        <a href="https://github.com/Elenmith" target="_blank" rel="noopener noreferrer">GitHub</a>
       </div>
     </div>
   );
