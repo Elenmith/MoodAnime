@@ -15,6 +15,12 @@ h1 {
   margin-bottom: 1rem;
 }
 
+p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #555;
+}
+
 .categories-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -47,4 +53,19 @@ h1 {
 .category-button:focus {
   outline: none;
   box-shadow: 0 0 8px rgba(108, 92, 231, 0.6);
+}
+
+.category-card {
+  text-decoration: none;
+  background-color: #e28903;
+  color: white;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.category-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
