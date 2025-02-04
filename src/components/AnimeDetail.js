@@ -82,12 +82,6 @@ const AnimeDetail = () => {
           ))}
         </div>
       </div>
-
-      {/* Obsada */}
-      <div className="anime-cast">
-        <h2>Voice Cast</h2>
-        <p>{anime.voiceCast?.join(", ") || "No voice cast available"}</p>
-      </div>
     </div>
   );
 };
