@@ -13,6 +13,7 @@ import CategoryDetail from "./components/Categories/CategoryDetail";
 import Moods from "./components/Moods/Moods";
 import NotFound from "./components/NotFound";
 import About from "./components/About/About";
+import Contact from "./components/Contact/Contact";
 
 function App() {
   const [animeList, setAnimeList] = useState([]);
@@ -41,6 +42,7 @@ function App() {
               <Route path="/moods/:mood" element={<MoodPage />} />
               <Route path="/anime/:id" element={<AnimeDetail />} />
               <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
             <Footer />
