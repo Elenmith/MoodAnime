@@ -14,6 +14,7 @@ import Moods from "./components/Moods/Moods";
 import NotFound from "./components/NotFound";
 import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
+import PrivacyPolicy from "./components/PrivacyPolicy/PrivacyPolicy";
 
 function App() {
   const [animeList, setAnimeList] = useState([]);
