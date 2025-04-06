@@ -26,29 +26,33 @@ function SearchNav() {
       return;
     }
 
-    try {
-      const response = await axios.get(
-        `${API_URL}/api/anime/search?id=${animeId}` // Dynamiczny URL API
-      );
-      setResults([response.data]); // Wynik jest obiektem, więc opakowujemy go w tablicę
-    } catch (error) {
-      console.error("Error fetching search results:", error.message);
-    }
-  };
+    const searchAnime = useCallback(
+    async (titleQuery) => {
+      if (!titleQuery || titleQuery.length < 2) {
+        setResults([]);
+        return;
+      }
 
-  useEffect(() => {
+      try {
+        const response = await axios.get(
+          `${API_URL}/api/anime/search?title=${encodeURIComponent(titleQuery)}`
+        );
+        setResults(response.data);
+      } catch (error) {
+        console.error("Error fetching search results:", error.message);
+      }
+    },
+    [API_URL]
+  );
+
+    useEffect(() => {
     const timeoutId = setTimeout(() => {
-      searchAnime(query); // Wysyłanie zapytania z ID
+      searchAnime(query);
     }, 300);
 
     return () => clearTimeout(timeoutId);
-  }, [query]);
+  }, [query, searchAnime]);
 
-  const handleSelect = (id) => {
-    navigate(`/anime/${id}`);
-    setQuery("");
-    setResults([]);
-  };
 
   return (
     <div className="header__search" style={{ position: "relative" }}>
