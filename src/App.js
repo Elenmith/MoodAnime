@@ -11,7 +11,7 @@ import Footer from "./components/Footer/Footer";
 import Categories from "./components/Categories/Categories";
 import CategoryDetail from "./components/Categories/CategoryDetail";
 import Moods from "./components/Moods/Moods";
-import NotFound from "./components/NotFound";
+import NotFound from "./components/NotFound/NotFound";
 import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
 import PrivacyPolicy from "./components/PrivacyPolicy/PrivacyPolicy";
