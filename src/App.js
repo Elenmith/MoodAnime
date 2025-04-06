@@ -43,6 +43,7 @@ function App() {
               <Route path="/anime/:id" element={<AnimeDetail />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/privacy" element={<PrivacyPolicy />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
             <Footer />
