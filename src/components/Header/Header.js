@@ -26,7 +26,7 @@ function SearchNav() {
       return;
     }
 
-    const searchAnime = useCallback(
+   const searchAnime = useCallback(
     async (titleQuery) => {
       if (!titleQuery || titleQuery.length < 2) {
         setResults([]);
@@ -45,7 +45,7 @@ function SearchNav() {
     [API_URL]
   );
 
-    useEffect(() => {
+  useEffect(() => {
     const timeoutId = setTimeout(() => {
       searchAnime(query);
     }, 300);
@@ -53,7 +53,11 @@ function SearchNav() {
     return () => clearTimeout(timeoutId);
   }, [query, searchAnime]);
 
-
+  const handleSelect = (id) => {
+    navigate(`/anime/${id}`);
+    setQuery("");
+    setResults([]);
+  };
   return (
     <div className="header__search" style={{ position: "relative" }}>
       <input
