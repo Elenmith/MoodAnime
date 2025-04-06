@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./Header.css"; 
+import "./Header.css";
 import { Link, useLocation } from "react-router-dom";
 
 function Logo() {
@@ -20,13 +20,7 @@ function SearchNav() {
   // Pobierz URL API z zmiennej środowiskowej
   const API_URL = process.env.REACT_APP_API_URL;
 
-  const searchAnime = async (animeId) => {
-    if (!animeId) {
-      setResults([]);
-      return;
-    }
-
-   const searchAnime = useCallback(
+  const searchAnime = useCallback(
     async (titleQuery) => {
       if (!titleQuery || titleQuery.length < 2) {
         setResults([]);
@@ -58,6 +52,7 @@ function SearchNav() {
     setQuery("");
     setResults([]);
   };
+
   return (
     <div className="header__search" style={{ position: "relative" }}>
       <input
