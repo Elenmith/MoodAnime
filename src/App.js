@@ -15,6 +15,7 @@ import NotFound from "./components/NotFound";
 import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
 import PrivacyPolicy from "./components/PrivacyPolicy/PrivacyPolicy";
+import TermsOfService from "./components/TermsOfService/TermsOfService";
 
 function App() {
   const [animeList, setAnimeList] = useState([]);
@@ -45,6 +46,7 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/privacy" element={<PrivacyPolicy />} />
+              <Route path="termsofservice" element={<TermsOfService />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
             <Footer />
