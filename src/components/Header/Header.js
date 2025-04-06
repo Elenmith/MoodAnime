@@ -58,7 +58,7 @@ function SearchNav() {
     <div className="header__search" style={{ position: "relative" }}>
       <input
         type="text"
-        placeholder="Enter Anime ID"
+        placeholder="Search anime by title..."
         className="header__search-input"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
