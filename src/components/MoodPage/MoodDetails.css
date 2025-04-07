@@ -54,3 +54,41 @@
   font-size: 0.9rem;
   color: #666;
 }
+
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  font-weight: bold;
+}
+.pagination button {
+  font-family: "Poppins", sans-serif; /* albo Twój font anime */
+  padding: 8px 14px;
+  font-size: 16px;
+  background-color: #5c6bc0; /* róż anime vibe */
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.3s;
+  box-shadow: 0 4px 8px rgba(233, 30, 99, 0.2);
+}
+
+.pagination button:hover {
+  background-color: #3f51b5;
+  transform: scale(1.05);
+}
+
+.pagination button.active {
+  background-color: #7e57c2; /* fioletowy dla aktywnej strony */
+  font-weight: bold;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
