@@ -9,6 +9,8 @@ function MoodPage() {
   const [loading, setLoading] = useState(true); // Stan dla ładowania
   const [error, setError] = useState(null); // Obsługa błędów
   const navigate = useNavigate(); // Hook do nawigacji
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   // Pobierz URL API z zmiennej środowiskowej
   const API_URL = process.env.REACT_APP_API_URL;
@@ -16,8 +18,11 @@ function MoodPage() {
   useEffect(() => {
     const fetchAnime = async () => {
       try {
-        const response = await axios.get(`${API_URL}/api/anime/moods/${mood}`);
-        setAnimeList(response.data);
+        const response = await axios.get(
+          `${API_URL}/api/anime/moods/${mood}?page=${page}&limit=16`
+        );
+        setAnimeList(response.data.anime);
+        setTotalPages(response.data.totalPages);
         setLoading(false);
       } catch (err) {
         setError(err.message);
@@ -27,7 +32,7 @@ function MoodPage() {
     };
 
     fetchAnime();
-  }, [mood, API_URL]); // Dodano `API_URL` jako zależność
+  }, [mood, page, API_URL]); 
 
   if (loading) {
     return <p>Loading...</p>;
@@ -64,6 +69,29 @@ function MoodPage() {
       ) : (
         <p>No anime found for this mood.</p>
       )}
+        <div className="pagination">
+        <button onClick={() => setPage(1)} disabled={page === 1}>
+          ⏮️ First
+        </button>
+        <button onClick={() => setPage(page - 1)} disabled={page === 1}>
+          ◀️ Previous
+        </button>
+        <span>
+          Page {page} of {totalPages}
+        </span>
+        <button
+          onClick={() => setPage(page + 1)}
+          disabled={page === totalPages}
+        >
+          Next ▶️
+        </button>
+        <button
+          onClick={() => setPage(totalPages)}
+          disabled={page === totalPages}
+        >
+          Last ⏭️
+        </button>
+      </div>
     </div>
   );
 }
