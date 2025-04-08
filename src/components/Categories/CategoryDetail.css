@@ -6,7 +6,7 @@
 .category-detail h1 {
   margin-bottom: 30px;
   font-size: 2rem;
-  color: #333;
+  color: #2a3d66; /* ciemniejszy niebieski */
 }
 
 .anime-grid {
@@ -17,45 +17,65 @@
 }
 
 .anime-card {
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
+  background-color: #f0f6ff;
+  border: 1px solid #cbdaf0;
   border-radius: 8px;
   padding: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(42, 61, 102, 0.1);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .anime-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 12px rgba(42, 61, 102, 0.2);
 }
 
-.anime-poster-category {
+.anime-card img {
   width: 100%;
   height: auto;
   border-radius: 8px;
 }
 
-.anime-info {
+.anime-card h3 {
+  font-size: 1.2rem;
+  color: #2a3d66;
   margin-top: 10px;
 }
 
-.anime-info h2 {
-  font-size: 1.2rem;
-  color: #444;
-  margin-bottom: 8px;
-}
-
-.anime-info p {
-  margin: 5px 0;
-  font-size: 0.9rem;
-  color: #666;
-}
-
-.loading {
-  font-size: 1.5rem;
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
   font-weight: bold;
+}
+
+.pagination button {
+  font-family: "Poppins", sans-serif;
+  padding: 8px 14px;
+  font-size: 16px;
+  background-color: #90caf9; /* delikatny niebieski */
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.3s;
+  box-shadow: 0 4px 8px rgba(33, 150, 243, 0.2);
+}
+
+.pagination button:hover {
+  background-color: #64b5f6;
+  transform: scale(1.05);
+}
+
+.pagination button.active {
+  background-color: #42a5f5;
+  font-weight: bold;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
   color: #666;
-  text-align: center;
-  margin-top: 50px;
+  cursor: not-allowed;
+  box-shadow: none;
 }
