@@ -91,6 +91,6 @@ const CategoryDetail = () => {
       )}
     </div>
   );
-};
+}
 
 export default CategoryDetail;
