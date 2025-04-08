@@ -134,6 +134,8 @@ function NavSocial() {
 
 function Header() {
   const location = useLocation();
+  const isHomePage = location.pathname === "/";
+  const [menuOpen, setMenuOpen] = useState(false);
 
   // Zmienna określająca, czy jesteśmy na stronie głównej
   const isHomePage = location.pathname === "/";
@@ -145,7 +147,18 @@ function Header() {
       }`}
     >
       <Logo />
-      <NavLinks />
+      <button
+        className="hamburger"
+        onClick={() => setMenuOpen(!menuOpen)}
+        aria-label="Toggle navigation"
+      >
+        ☰
+      </button>
+
+      <nav className={`header__nav ${menuOpen ? "is-open" : ""}`}>
+        <NavLinks />
+      </nav>
+
       <SearchNav />
       <NavSocial />
     </header>
