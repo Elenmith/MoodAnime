@@ -31,4 +31,5 @@
 
 .footer-link:hover {
   color: #1e90ff; /* Zmiana koloru na hover */
+  text-decoration: none;
 }
