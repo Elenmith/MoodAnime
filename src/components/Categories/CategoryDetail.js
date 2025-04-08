@@ -11,7 +11,7 @@ const CategoryDetail = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   
-  const API_URL = process.env.REACT_APP_API_URL || "https://mood-for-anime-443a0efbedff.herokuapp.com";
+  const API_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
   setLoading(true);
@@ -20,7 +20,7 @@ const CategoryDetail = () => {
     const fetchCategoryAnime = async () => {
       try {
         const res = await axios.get(
-          `${API_URL}/api/anime/genre/${category}?page=${page}`
+          `${API_URL}/api/anime/genre/${category}?page=${page}&limite=16`
         );
         setAnimeList(res.data.anime);
         setTotalPages(res.data.totalPages);
@@ -33,11 +33,6 @@ const CategoryDetail = () => {
 
     fetchCategoryAnime();
   }, [category, page, API_URL]);
-
-    
-
-  fetchAnime();
-}, [genre, API_URL]);
   
   if (loading) {
     return <div className="loading">Loading...</div>; // Wyświetla "Loading..." w trakcie ładowania
