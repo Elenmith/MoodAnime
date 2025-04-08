@@ -4,45 +4,41 @@ import axios from "axios";
 import "./CategoryDetail.css";
 
 const CategoryDetail = () => {
-  const { genre } = useParams(); // Pobiera gatunek z URL
-  const [animeList, setAnimeList] = useState([]); // Stan dla listy anime
-  const [loading, setLoading] = useState(true); // Stan dla ładowania
-  const [error, setError] = useState(null); // Obsługa błędów
-  const navigate = useNavigate(); // Hook do nawigacji
+  const { category } = useParams();
+  const [animeList, setAnimeList] = useState([]);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const API_URL = process.env.REACT_APP_API_URL;
+  const navigate = useNavigate();
   
   const API_URL = process.env.REACT_APP_API_URL || "https://mood-for-anime-443a0efbedff.herokuapp.com";
-
-
-  console.log(genre);
-  console.log("API_URL:", API_URL);
-  console.log("Fetching from:", `${API_URL}/api/categories/${genre}`);
-  console.log("🚀 Renderowanie CategoryDetail!");
-  console.log("📌 Otrzymany genre:", genre);
-  console.log("📡 Pobieram dane z API:", `${API_URL}/api/categories/${genre}`);
 
   useEffect(() => {
   setLoading(true);
 
-  const fetchAnime = async () => {
-    try {
-      console.log("Fetching from:", `${API_URL}/api/categories/${genre}`);
-      const response = await axios.get(`${API_URL}/api/categories/${genre}`);
-      console.log("Response:", response.data);
-      setAnimeList(response.data);
-      setLoading(false);
-    } catch (err) {
-      console.error("Błąd pobierania anime:", err);
-      setError(err.message);
-      setLoading(false);
-    }
-  };
+  useEffect(() => {
+    const fetchCategoryAnime = async () => {
+      try {
+        const res = await axios.get(
+          `${API_URL}/api/anime/genre/${category}?page=${page}`
+        );
+        setAnimeList(res.data.anime);
+        setTotalPages(res.data.totalPages);
+        setLoading(false);
+      } catch (err) {
+        console.error("❌ Error fetching category anime:", err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchCategoryAnime();
+  }, [category, page, API_URL]);
 
     
 
   fetchAnime();
 }, [genre, API_URL]);
-  
-  console.log("📝 Lista anime:", animeList);
   
   if (loading) {
     return <div className="loading">Loading...</div>; // Wyświetla "Loading..." w trakcie ładowania
@@ -54,30 +50,50 @@ const CategoryDetail = () => {
 
   return (
     <div className="category-detail">
-      <h1>Anime for category: {genre}</h1>
-      {animeList.length > 0 ? (
-        <div className="anime-grid">
-          {animeList.map((anime) => (
-            <div
-              key={anime._id}
-              className="anime-card"
-              onClick={() => navigate(`/anime/${anime._id}`)} // Nawigacja po kliknięciu
-            >
-              <img
-                src={anime.imageUrl}
-                alt={anime.title}
-                className="anime-poster-category"
-              />
-              <div className="anime-info">
-                <h2>{anime.title}</h2>
-                <p>Genres: {anime.genres.join(", ")}</p>
-                <p>Rating: {anime.rating}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+      <h1>Category: {category}</h1>
+      {loading ? (
+        <p>Loading...</p>
+      ) : animeList.length === 0 ? (
+        <p>No anime found in this category.</p>
       ) : (
-        <p>No anime found for this category.</p>
+        <>
+          <div className="anime-grid">
+            {animeList.map((anime) => (
+              <div
+                key={anime._id}
+                className="anime-card"
+                onClick={() => navigate(`/anime/${anime._id}`)}
+              >
+                <img src={anime.imageUrl} alt={anime.title} />
+                <h3>{anime.title}</h3>
+              </div>
+            ))}
+          </div>
+
+          <div className="pagination">
+            <button onClick={() => setPage(1)} disabled={page === 1}>
+              ⏮
+            </button>
+            <button onClick={() => setPage(page - 1)} disabled={page === 1}>
+              ◀️
+            </button>
+            <span>
+              Page {page} of {totalPages}
+            </span>
+            <button
+              onClick={() => setPage(page + 1)}
+              disabled={page === totalPages}
+            >
+              ▶️
+            </button>
+            <button
+              onClick={() => setPage(totalPages)}
+              disabled={page === totalPages}
+            >
+              ⏭
+            </button>
+          </div>
+        </>
       )}
     </div>
   );
