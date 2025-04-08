@@ -17,7 +17,6 @@ function SearchNav() {
   const [results, setResults] = useState([]);
   const navigate = useNavigate();
 
-  // Pobierz URL API z zmiennej środowiskowej
   const API_URL = process.env.REACT_APP_API_URL;
 
   const searchAnime = useCallback(
@@ -90,7 +89,7 @@ function SearchNav() {
               }}
             >
               <img
-                src={anime.imageUrl || "https://via.placeholder.com/40"} // Placeholder, jeśli brak obrazu
+                src={anime.imageUrl || "https://via.placeholder.com/40"}
                 alt={anime.title}
                 style={{ width: "40px", height: "40px", marginRight: "10px" }}
               />
@@ -103,13 +102,13 @@ function SearchNav() {
   );
 }
 
-function NavLinks() {
+function NavLinks({ isOpen, onLinkClick }) {
   return (
-    <nav className="header__nav">
-      <Link to="/categories" className="header__link">
+    <nav className={`header__nav ${isOpen ? "is-open" : ""}`}>
+      <Link to="/categories" className="header__link" onClick={onLinkClick}>
         Categories
       </Link>
-      <Link to="/moods" className="header__link">
+      <Link to="/moods" className="header__link" onClick={onLinkClick}>
         Moods
       </Link>
     </nav>
@@ -144,6 +143,7 @@ function Header() {
       }`}
     >
       <Logo />
+
       <button
         className="hamburger"
         onClick={() => setMenuOpen(!menuOpen)}
@@ -152,9 +152,7 @@ function Header() {
         ☰
       </button>
 
-      <nav className={`header__nav ${menuOpen ? "is-open" : ""}`}>
-        <NavLinks />
-      </nav>
+      <NavLinks isOpen={menuOpen} onLinkClick={() => setMenuOpen(false)} />
 
       <SearchNav />
       <NavSocial />
