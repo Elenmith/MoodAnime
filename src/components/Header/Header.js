@@ -137,9 +137,6 @@ function Header() {
   const isHomePage = location.pathname === "/";
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Zmienna określająca, czy jesteśmy na stronie głównej
-  const isHomePage = location.pathname === "/";
-
   return (
     <header
       className={`header ${
