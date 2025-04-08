@@ -7,7 +7,7 @@ import { Link, useLocation } from "react-router-dom";
 function Logo() {
   return (
     <Link to="/" className="header__logo">
-      AnimeMood
+      Mood4Anime
     </Link>
   );
 }
