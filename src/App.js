@@ -20,7 +20,6 @@ import TermsOfService from "./components/TermsOfService/TermsOfService";
 function App() {
   const [animeList, setAnimeList] = useState([]);
 
-  // Pobierz URL backendu z zmiennej środowiskowej
   const API_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
@@ -28,7 +27,7 @@ function App() {
       .get(`${API_URL}/anime`) // Użyj zmiennej środowiskowej dla adresu API
       .then((response) => setAnimeList(response.data))
       .catch((error) => console.error("Błąd podczas pobierania anime:", error));
-  }, [API_URL]); // Dodaj API_URL jako zależność
+  }, [API_URL]); 
 
   return (
     <Router>
