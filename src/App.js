@@ -39,7 +39,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Main />} />
               <Route path="/categories" element={<Categories />} />
-              <Route path="/categories/:genre" element={<CategoryDetail />} />
+              <Route path="/categories/:category" element={<CategoryDetail />} />
               <Route path="/moods" element={<Moods />} />
               <Route path="/moods/:mood" element={<MoodPage />} />
               <Route path="/anime/:id" element={<AnimeDetail />} />
