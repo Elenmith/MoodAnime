@@ -10,17 +10,15 @@ const CategoryDetail = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const [error, setError] = useState(null);
   
   const API_URL = process.env.REACT_APP_API_URL;
-
-  useEffect(() => {
-  setLoading(true);
 
   useEffect(() => {
     const fetchCategoryAnime = async () => {
       try {
         const res = await axios.get(
-          `${API_URL}/api/anime/genre/${category}?page=${page}&limite=16`
+          `${API_URL}/api/anime/genre/${category}?page=${page}&limit=16`
         );
         setAnimeList(res.data.anime);
         setTotalPages(res.data.totalPages);
