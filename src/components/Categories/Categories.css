@@ -9,13 +9,13 @@
   align-items: center;
 }
 
-h1 {
+.categories-page h1 {
   font-size: 2.5rem;
   color: #2c3e50;
   margin-bottom: 1rem;
 }
 
-p {
+.categories-page p {
   font-size: 1.2rem;
   margin-bottom: 2rem;
   color: #555;
@@ -29,43 +29,26 @@ p {
   max-width: 800px;
 }
 
-.category-button {
-  background-color: #6c5ce7;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 1rem;
-  font-size: 1rem;
-  cursor: pointer;
-  text-transform: capitalize;
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
+.categories-grid li {
+  list-style: none;
 }
 
-.category-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.category-button:active {
-  background-color: #4834d4;
-}
-
-.category-button:focus {
-  outline: none;
-  box-shadow: 0 0 8px rgba(108, 92, 231, 0.6);
-}
-
-.category-card {
+.categories-grid a {
   text-decoration: none;
-  background-color: #e28903;
+  background-color: #5c6bc0; /* delikatny niebieski */
   color: white;
   border-radius: 8px;
   padding: 1rem;
+  display: block;
   text-align: center;
   transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
-.category-card:hover {
+.categories-grid a:hover {
   transform: scale(1.05);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.categories-grid a:active {
+  background-color: #3f51b5; /* trochę ciemniejszy niebieski przy kliknięciu */
 }
