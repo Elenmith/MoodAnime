@@ -9,7 +9,6 @@ const CategoryDetail = () => {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
-  const API_URL = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
   
   const API_URL = process.env.REACT_APP_API_URL || "https://mood-for-anime-443a0efbedff.herokuapp.com";
