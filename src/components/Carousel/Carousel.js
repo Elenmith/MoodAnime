@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 const Carousel = ({ animeList, speed = 2000, autoplaySpeed = 3000 }) => {
   const navigate = useNavigate();
-  const [loadedImages, setLoadedImages] = useState(0);
-  const [totalImages, setTotalImages] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   // Losowe sortowanie tablicy anime
   const shuffledAnimeList = [...animeList]
@@ -14,12 +14,13 @@ const Carousel = ({ animeList, speed = 2000, autoplaySpeed = 3000 }) => {
     .slice(0, 50);
 
   useEffect(() => {
-    setTotalImages(shuffledAnimeList.length);
-  }, [shuffledAnimeList.length]);
+    // Krótkie opóźnienie żeby pokazać loading state
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
 
-  const handleImageLoad = () => {
-    setLoadedImages(prev => prev + 1);
-  };
+    return () => clearTimeout(timer);
+  }, [animeList]);
 
   const handleImageError = (e) => {
     // Zastąp uszkodzony obraz placeholderem
@@ -61,12 +62,21 @@ const Carousel = ({ animeList, speed = 2000, autoplaySpeed = 3000 }) => {
     ]
   };
 
-  // Pokaż loading jeśli obrazy się jeszcze ładują
-  if (loadedImages < totalImages && totalImages > 0) {
+  // Pokaż loading jeśli dane się jeszcze ładują
+  if (isLoading) {
     return (
       <div className="carousel-loading">
         <div className="loading-spinner"></div>
-        <p>Loading images... {loadedImages}/{totalImages}</p>
+        <p>Loading amazing anime...</p>
+      </div>
+    );
+  }
+
+  // Pokaż error jeśli nie ma danych
+  if (!shuffledAnimeList || shuffledAnimeList.length === 0) {
+    return (
+      <div className="carousel-error">
+        <p>No anime available at the moment.</p>
       </div>
     );
   }
@@ -83,7 +93,6 @@ const Carousel = ({ animeList, speed = 2000, autoplaySpeed = 3000 }) => {
             <img 
               src={anime.imageUrl} 
               alt={anime.title}
-              onLoad={handleImageLoad}
               onError={handleImageError}
               loading="lazy"
             />
