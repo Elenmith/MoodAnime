@@ -10,6 +10,8 @@ function Main() {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredMoods, setFilteredMoods] = useState([]);
   const [animeList, setAnimeList] = useState([]);
+  const [carouselLoading, setCarouselLoading] = useState(true);
+  const [carouselError, setCarouselError] = useState(null);
   const navigate = useNavigate(); // Hook do nawigacji
   const [featuredAnime, setFeaturedAnime] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -34,20 +36,28 @@ function Main() {
     navigate(`/moods/${mood}`);
   };
 
-  // Pobranie listy plakatów anime
+  // Pobranie zróżnicowanych anime dla karuzeli
   useEffect(() => {
-    const fetchAnime = async () => {
+    const fetchRandomAnime = async () => {
       try {
-        const response = await fetch(`${API_URL}/api/anime/posters`);
+        setCarouselLoading(true);
+        setCarouselError(null);
+        const response = await fetch(`${API_URL}/api/anime/random-categories`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch random anime');
+        }
         const data = await response.json();
-        setAnimeList(data); // Przechowujemy pełne dane anime
+        setAnimeList(data);
       } catch (err) {
-        console.error("Error fetching anime:", err);
+        console.error("Error fetching random anime:", err);
+        setCarouselError("Nie udało się załadować anime. Spróbuj odświeżyć stronę.");
+      } finally {
+        setCarouselLoading(false);
       }
     };
 
-    fetchAnime();
-  }, [API_URL]); // Dodano `API_URL` jako zależność
+    fetchRandomAnime();
+  }, [API_URL]);
 
   // Ustawianie anime dnia
   useEffect(() => {
@@ -100,17 +110,27 @@ function Main() {
           )}
         </div>
       </div>
-      {/* Karuzela pod wyszukiwaniem */}
-      <h2 className="carousel-h2">or try something random</h2>
+      
+      {/* Jedna zróżnicowana karuzela */}
+      <h2 className="carousel-h2">Discover amazing anime from different genres</h2>
       <div className="main__carousel">
-        <Carousel animeList={animeList} />
+        {carouselLoading ? (
+          <div className="carousel-loading">
+            <div className="loading-spinner"></div>
+            <p>Loading amazing anime...</p>
+          </div>
+        ) : carouselError ? (
+          <div className="carousel-error">
+            <p>{carouselError}</p>
+            <button onClick={() => window.location.reload()} className="retry-button">
+              Try Again
+            </button>
+          </div>
+        ) : (
+          <Carousel animeList={animeList} />
+        )}
       </div>
-      <div className="main__carousel">
-        <Carousel animeList={animeList} />
-      </div>
-      <div className="main__carousel">
-        <Carousel animeList={animeList} />
-      </div>
+      
       {/* Karta do anime dnia */}
       <h2 className="suggestion-h2">This is our suggestion for today!</h2>
       <FeaturedAnime loading={loading} featuredAnime={featuredAnime} />
