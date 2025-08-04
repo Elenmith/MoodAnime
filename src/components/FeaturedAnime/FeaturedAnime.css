@@ -5,21 +5,33 @@
 }
 
 .featured-anime-card {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: white;
+  border: 2px solid #e1e5e9;
   border-radius: 20px;
   padding: 30px;
   display: flex;
   gap: 30px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  cursor: pointer;
   position: relative;
   overflow: hidden;
 }
 
+.featured-anime-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #667eea, #764ba2, #f093fb, #f5576c);
+  border-radius: 20px 20px 0 0;
+}
+
 .featured-anime-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  border-color: #667eea;
 }
 
 .featured-anime-image-container {
@@ -32,7 +44,7 @@
   height: 350px;
   object-fit: cover;
   border-radius: 15px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   transition: transform 0.3s ease;
 }
 
@@ -47,7 +59,7 @@
 }
 
 .featured-badge {
-  background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+  background: linear-gradient(45deg, #667eea, #764ba2);
   color: white;
   padding: 8px 16px;
   border-radius: 20px;
@@ -63,7 +75,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  color: white;
+  color: #333;
 }
 
 .featured-anime-title {
@@ -71,7 +83,7 @@
   font-weight: bold;
   margin: 0 0 15px 0;
   line-height: 1.2;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  color: #2c3e50;
 }
 
 .featured-anime-rating {
@@ -88,9 +100,11 @@
 .rating-number {
   font-size: 16px;
   font-weight: bold;
-  background: rgba(255, 255, 255, 0.2);
-  padding: 4px 8px;
+  background: #f8f9fa;
+  color: #495057;
+  padding: 6px 12px;
   border-radius: 8px;
+  border: 1px solid #e9ecef;
 }
 
 .featured-anime-genres {
@@ -101,13 +115,20 @@
 }
 
 .genre-tag {
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
+  background: #e3f2fd;
+  color: #1976d2;
   padding: 6px 12px;
   border-radius: 15px;
   font-size: 12px;
   font-weight: 500;
-  backdrop-filter: blur(10px);
+  border: 1px solid #bbdefb;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.genre-tag:hover {
+  background: #bbdefb;
+  transform: translateY(-1px);
 }
 
 .featured-anime-moods {
@@ -121,23 +142,31 @@
 .moods-label {
   font-size: 14px;
   font-weight: 500;
-  opacity: 0.9;
+  color: #6c757d;
 }
 
 .mood-tag {
-  background: rgba(255, 255, 255, 0.15);
-  color: white;
+  background: #fff3e0;
+  color: #f57c00;
   padding: 4px 10px;
   border-radius: 12px;
   font-size: 11px;
   font-weight: 400;
+  border: 1px solid #ffe0b2;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mood-tag:hover {
+  background: #ffe0b2;
+  transform: translateY(-1px);
 }
 
 .featured-anime-description {
   font-size: 16px;
   line-height: 1.6;
   margin-bottom: 20px;
-  opacity: 0.95;
+  color: #495057;
   flex: 1;
 }
 
@@ -152,27 +181,26 @@
   align-items: center;
   gap: 5px;
   font-size: 14px;
-  opacity: 0.9;
+  color: #6c757d;
 }
 
 .featured-anime-button {
-  background: rgba(255, 255, 255, 0.2);
+  background: linear-gradient(45deg, #667eea, #764ba2);
   color: white;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  border: none;
   padding: 12px 24px;
   border-radius: 25px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
   align-self: flex-start;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
 }
 
 .featured-anime-button:hover {
-  background: rgba(255, 255, 255, 0.3);
-  border-color: rgba(255, 255, 255, 0.5);
   transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
 }
 
 /* Loading and Error States */
@@ -184,13 +212,17 @@
   justify-content: center;
   padding: 60px 20px;
   text-align: center;
+  background: white;
+  border-radius: 20px;
+  border: 2px solid #e1e5e9;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .featured-anime-loading .loading-spinner {
   width: 50px;
   height: 50px;
-  border: 4px solid rgba(255, 255, 255, 0.3);
-  border-top: 4px solid white;
+  border: 4px solid #e9ecef;
+  border-top: 4px solid #667eea;
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin-bottom: 20px;
@@ -198,7 +230,7 @@
 
 .featured-anime-loading p,
 .featured-anime-error p {
-  color: white;
+  color: #495057;
   font-size: 18px;
   margin: 0;
 }

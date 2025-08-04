@@ -5,10 +5,18 @@ import "./FeaturedAnime.css";
 const FeaturedAnime = ({ loading, featuredAnime }) => {
   const navigate = useNavigate();
 
-  const handleClick = () => {
+  const handleViewDetails = () => {
     if (featuredAnime && featuredAnime._id) {
       navigate(`/anime/${featuredAnime._id}`);
     }
+  };
+
+  const handleGenreClick = (genre) => {
+    navigate(`/categories/${genre.toLowerCase()}`);
+  };
+
+  const handleMoodClick = (mood) => {
+    navigate(`/moods/${mood}`);
   };
 
   if (loading) {
@@ -34,7 +42,7 @@ const FeaturedAnime = ({ loading, featuredAnime }) => {
 
   return (
     <div className="featured-anime-container">
-      <div className="featured-anime-card" onClick={handleClick}>
+      <div className="featured-anime-card">
         <div className="featured-anime-image-container">
           <img 
             src={featuredAnime.imageUrl} 
@@ -59,7 +67,13 @@ const FeaturedAnime = ({ loading, featuredAnime }) => {
           {featuredAnime.genres && featuredAnime.genres.length > 0 && (
             <div className="featured-anime-genres">
               {featuredAnime.genres.slice(0, 3).map((genre, index) => (
-                <span key={index} className="genre-tag">{genre}</span>
+                <span 
+                  key={index} 
+                  className="genre-tag"
+                  onClick={() => handleGenreClick(genre)}
+                >
+                  {genre}
+                </span>
               ))}
             </div>
           )}
@@ -68,7 +82,13 @@ const FeaturedAnime = ({ loading, featuredAnime }) => {
             <div className="featured-anime-moods">
               <span className="moods-label">Moods:</span>
               {featuredAnime.moods.slice(0, 4).map((mood, index) => (
-                <span key={index} className="mood-tag">{mood}</span>
+                <span 
+                  key={index} 
+                  className="mood-tag"
+                  onClick={() => handleMoodClick(mood)}
+                >
+                  {mood}
+                </span>
               ))}
             </div>
           )}
@@ -91,7 +111,10 @@ const FeaturedAnime = ({ loading, featuredAnime }) => {
             )}
           </div>
 
-          <button className="featured-anime-button">
+          <button 
+            className="featured-anime-button"
+            onClick={handleViewDetails}
+          >
             View Details
           </button>
         </div>
