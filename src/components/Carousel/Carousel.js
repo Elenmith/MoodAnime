@@ -10,6 +10,7 @@ const Carousel = ({ animeList, speed = 2000, autoplaySpeed = 3000 }) => {
 
   // Debug logging
   console.log("🎠 Carousel received animeList:", animeList?.length || 0, "items");
+  console.log("🎠 First anime item:", animeList?.[0]);
 
   // Losowe sortowanie tablicy anime
   const shuffledAnimeList = [...animeList]
@@ -17,6 +18,7 @@ const Carousel = ({ animeList, speed = 2000, autoplaySpeed = 3000 }) => {
     .slice(0, 20); // Zmniejszam do 20 anime dla lepszej wydajności
 
   console.log("🎠 Carousel shuffled list:", shuffledAnimeList?.length || 0, "items");
+  console.log("🎠 First shuffled item:", shuffledAnimeList?.[0]);
 
   useEffect(() => {
     // Krótkie opóźnienie żeby pokazać loading state
@@ -105,14 +107,14 @@ const Carousel = ({ animeList, speed = 2000, autoplaySpeed = 3000 }) => {
             onClick={() => navigate(`/anime/${anime._id}`)}
           >
             <img 
-              src={anime.imageUrl} 
-              alt={anime.title}
+              src={anime.imageUrl || 'https://via.placeholder.com/200x300/cccccc/666666?text=No+Image'} 
+              alt={anime.title || 'Anime'}
               onError={handleImageError}
               loading="lazy"
             />
             <div className="carousel-slide-overlay">
-              <h3>{anime.title}</h3>
-              <p className="rating">⭐ {anime.rating}</p>
+              <h3>{anime.title || 'No Title'}</h3>
+              <p className="rating">⭐ {anime.rating || 'N/A'}</p>
             </div>
           </div>
         ))}
