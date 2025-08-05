@@ -1,6 +1,28 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow: /404
 Allow: /
 
+# Sitemap
 Sitemap: https://mood4anime.com/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
+
+# Disallow admin and API routes
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /static/
+
+# Allow important pages
+Allow: /
+Allow: /moods/
+Allow: /categories/
+Allow: /anime/
+Allow: /search
+
+# Block common bot traps
+Disallow: /temp/
+Disallow: /tmp/
+Disallow: /private/
+Disallow: /draft/

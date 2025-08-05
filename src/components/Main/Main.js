@@ -4,6 +4,7 @@ import "./Main.css";
 import { MoodContext } from "../../context/MoodContext";
 import Carousel from "../Carousel/Carousel";
 import FeaturedAnime from "../FeaturedAnime/FeaturedAnime";
+import SEO from "../SEO/SEO";
 
 function Main() {
   const { moods } = useContext(MoodContext);
@@ -12,7 +13,7 @@ function Main() {
   const [animeList, setAnimeList] = useState([]);
   const [carouselLoading, setCarouselLoading] = useState(true);
   const [carouselError, setCarouselError] = useState(null);
-  const navigate = useNavigate(); // Hook do nawigacji
+  const navigate = useNavigate();
   const [featuredAnime, setFeaturedAnime] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -77,64 +78,72 @@ function Main() {
     };
 
     fetchFeaturedAnime();
-  }, [API_URL]); // Dodano `API_URL` jako zależność
+  }, [API_URL]);
 
   return (
-    <main className="main">
-      <div className="main__content">
-        <div className="main_mood">
-          <h1 className="main__title">
-            Choose an anime that matches your mood
-          </h1>
-          <div className="main__search-container">
-            <input
-              type="text"
-              placeholder="Write mood..."
-              className="main__search-input"
-              value={searchTerm}
-              onChange={handleInputChange}
-            />
+    <>
+      <SEO 
+        title="Discover Perfect Anime for Your Mood"
+        description="Find the perfect anime based on your mood! Browse thousands of anime recommendations filtered by emotions, genres, and ratings. Discover new anime that matches your current feelings."
+        keywords="anime recommendations, anime by mood, anime emotions, anime discovery, best anime, anime list"
+        url="https://mood4anime.com"
+      />
+      <main className="main">
+        <div className="main__content">
+          <div className="main_mood">
+            <h1 className="main__title">
+              Choose an anime that matches your mood
+            </h1>
+            <div className="main__search-container">
+              <input
+                type="text"
+                placeholder="Write mood..."
+                className="main__search-input"
+                value={searchTerm}
+                onChange={handleInputChange}
+              />
+            </div>
+            {filteredMoods.length > 0 && (
+              <ul className="main__suggestions">
+                {filteredMoods.map((mood, index) => (
+                  <li
+                    key={index}
+                    className="main__suggestion-item"
+                    onClick={() => handleMoodClick(mood)}
+                  >
+                    {mood}
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
-          {filteredMoods.length > 0 && (
-            <ul className="main__suggestions">
-              {filteredMoods.map((mood, index) => (
-                <li
-                  key={index}
-                  className="main__suggestion-item"
-                  onClick={() => handleMoodClick(mood)}
-                >
-                  {mood}
-                </li>
-              ))}
-            </ul>
+        </div>
+        
+        {/* Jedna zróżnicowana karuzela */}
+        <h2 className="carousel-h2">Discover amazing anime from different genres</h2>
+        <div className="main__carousel">
+          {carouselLoading ? (
+            <div className="carousel-loading">
+              <div className="loading-spinner"></div>
+              <p>Loading amazing anime...</p>
+            </div>
+          ) : carouselError ? (
+            <div className="carousel-error">
+              <p>{carouselError}</p>
+              <button onClick={() => window.location.reload()} className="retry-button">
+                Try Again
+              </button>
+            </div>
+          ) : (
+            <Carousel animeList={animeList} />
           )}
         </div>
-      </div>
-      
-      {/* Jedna zróżnicowana karuzela */}
-      <h2 className="carousel-h2">Discover amazing anime from different genres</h2>
-      <div className="main__carousel">
-        {carouselLoading ? (
-          <div className="carousel-loading">
-            <div className="loading-spinner"></div>
-            <p>Loading amazing anime...</p>
-          </div>
-        ) : carouselError ? (
-          <div className="carousel-error">
-            <p>{carouselError}</p>
-            <button onClick={() => window.location.reload()} className="retry-button">
-              Try Again
-            </button>
-          </div>
-        ) : (
-          <Carousel animeList={animeList} />
-        )}
-      </div>
-      
-      {/* Karta do anime dnia */}
-      <h2 className="suggestion-h2">This is our suggestion for today!</h2>
-      <FeaturedAnime loading={loading} featuredAnime={featuredAnime} />
-    </main>
+        
+        {/* Karta do anime dnia */}
+        <h2 className="suggestion-h2">This is our suggestion for today!</h2>
+        <FeaturedAnime loading={loading} featuredAnime={featuredAnime} />
+      </main>
+    </>
   );
 }
 

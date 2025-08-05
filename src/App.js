@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { HelmetProvider } from 'react-helmet-async';
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -30,29 +31,31 @@ function App() {
   }, [API_URL]); 
 
   return (
-    <Router>
-      <MoodProvider>
-        <CategoryProvider> 
-          <div className="app-container">
-            <Header />
-            <Routes>
-              <Route path="/" element={<Main />} />
-              <Route path="/categories" element={<Categories />} />
-              <Route path="/categories/:category" element={<CategoryDetail />} />
-              <Route path="/moods" element={<Moods />} />
-              <Route path="/moods/:mood" element={<MoodPage />} />
-              <Route path="/anime/:id" element={<AnimeDetail />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/privacy" element={<PrivacyPolicy />} />
-              <Route path="termsofservice" element={<TermsOfService />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-            <Footer />
-          </div>
-        </CategoryProvider>
-      </MoodProvider>
-    </Router>
+    <HelmetProvider>
+      <Router>
+        <MoodProvider>
+          <CategoryProvider> 
+            <div className="app-container">
+              <Header />
+              <Routes>
+                <Route path="/" element={<Main />} />
+                <Route path="/categories" element={<Categories />} />
+                <Route path="/categories/:category" element={<CategoryDetail />} />
+                <Route path="/moods" element={<Moods />} />
+                <Route path="/moods/:mood" element={<MoodPage />} />
+                <Route path="/anime/:id" element={<AnimeDetail />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/privacy" element={<PrivacyPolicy />} />
+                <Route path="termsofservice" element={<TermsOfService />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+              <Footer />
+            </div>
+          </CategoryProvider>
+        </MoodProvider>
+      </Router>
+    </HelmetProvider>
   );
 }
 
