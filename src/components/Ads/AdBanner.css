@@ -1,0 +1,92 @@
+/* AdBanner.css - Styles for advertisement banners */
+
+.ad-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  min-height: 90px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Different ad positions */
+.ad-banner.ad-header {
+  margin: 10px 0;
+  min-height: 90px;
+}
+
+.ad-banner.ad-sidebar {
+  margin: 20px 0;
+  min-height: 250px;
+  width: 300px;
+}
+
+.ad-banner.ad-content {
+  margin: 30px 0;
+  min-height: 90px;
+}
+
+.ad-banner.ad-footer {
+  margin: 20px 0;
+  min-height: 90px;
+}
+
+.ad-banner.ad-inline {
+  margin: 15px 0;
+  min-height: 90px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .ad-banner {
+    margin: 15px 0;
+    min-height: 60px;
+  }
+  
+  .ad-banner.ad-sidebar {
+    width: 100%;
+    min-height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ad-banner {
+    margin: 10px 0;
+    min-height: 50px;
+  }
+}
+
+/* Loading state */
+.ad-banner.loading {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Error state */
+.ad-banner.error {
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  color: #856404;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  padding: 20px;
+}
+
+/* Hidden state */
+.ad-banner.hidden {
+  display: none;
+} 

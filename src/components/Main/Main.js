@@ -5,6 +5,7 @@ import { MoodContext } from "../../context/MoodContext";
 import Carousel from "../Carousel/Carousel";
 import FeaturedAnime from "../FeaturedAnime/FeaturedAnime";
 import SEO from "../SEO/SEO";
+import AdPlaceholder from "../Ads/AdPlaceholder"; // NEW: Import ad component
 
 function Main() {
   const { moods } = useContext(MoodContext);
@@ -99,6 +100,10 @@ function Main() {
         keywords="anime recommendations, anime by mood, anime emotions, anime discovery, best anime, anime list"
         url="https://mood4anime.com"
       />
+      
+      {/* Header Ad */}
+      <AdPlaceholder position="header" category="anime" />
+      
       <main className="main">
         <div className="main__content">
           <div className="main_mood">
@@ -130,6 +135,9 @@ function Main() {
           </div>
         </div>
         
+        {/* Content Ad */}
+        <AdPlaceholder position="content" category="anime" />
+        
         {/* Jedna zróżnicowana karuzela */}
         <h2 className="carousel-h2">Discover amazing anime from different genres</h2>
         <div className="main__carousel">
@@ -149,6 +157,9 @@ function Main() {
             <Carousel animeList={animeList} />
           )}
         </div>
+        
+        {/* Inline Ad */}
+        <AdPlaceholder position="inline" category="figures" />
         
         {/* Karta do anime dnia */}
         <h2 className="suggestion-h2">This is our suggestion for today!</h2>

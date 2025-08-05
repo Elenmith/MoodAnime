@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { MoodProvider } from "./context/MoodContext";
 import { CategoryProvider } from "./context/CategoryContext"; 
 import { ThemeProvider } from "./context/ThemeContext";
+import { AdProvider } from "./context/AdContext"; // NEW: Ad context
 import MoodPage from "./components/MoodPage/MoodPage";
 import AnimeDetail from "./components/AnimeDetail";
 import Footer from "./components/Footer/Footer";
@@ -18,6 +19,7 @@ import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
 import PrivacyPolicy from "./components/PrivacyPolicy/PrivacyPolicy";
 import TermsOfService from "./components/TermsOfService/TermsOfService";
+import CookieConsent from "./components/Ads/CookieConsent"; // NEW: Cookie consent
 
 function App() {
   const [animeList, setAnimeList] = useState([]);
@@ -34,29 +36,32 @@ function App() {
   return (
     <HelmetProvider>
       <ThemeProvider>
-        <Router>
-          <MoodProvider>
-            <CategoryProvider> 
-              <div className="app-container">
-                <Header />
-                <Routes>
-                  <Route path="/" element={<Main />} />
-                  <Route path="/categories" element={<Categories />} />
-                  <Route path="/categories/:category" element={<CategoryDetail />} />
-                  <Route path="/moods" element={<Moods />} />
-                  <Route path="/moods/:mood" element={<MoodPage />} />
-                  <Route path="/anime/:id" element={<AnimeDetail />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/contact" element={<Contact />} />
-                  <Route path="/privacy" element={<PrivacyPolicy />} />
-                  <Route path="termsofservice" element={<TermsOfService />} />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-                <Footer />
-              </div>
-            </CategoryProvider>
-          </MoodProvider>
-        </Router>
+        <AdProvider> {/* NEW: Wrap with AdProvider */}
+          <Router>
+            <MoodProvider>
+              <CategoryProvider> 
+                <div className="app-container">
+                  <Header />
+                  <Routes>
+                    <Route path="/" element={<Main />} />
+                    <Route path="/categories" element={<Categories />} />
+                    <Route path="/categories/:category" element={<CategoryDetail />} />
+                    <Route path="/moods" element={<Moods />} />
+                    <Route path="/moods/:mood" element={<MoodPage />} />
+                    <Route path="/anime/:id" element={<AnimeDetail />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/privacy" element={<PrivacyPolicy />} />
+                    <Route path="termsofservice" element={<TermsOfService />} />
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                  <Footer />
+                  <CookieConsent /> {/* NEW: Cookie consent banner */}
+                </div>
+              </CategoryProvider>
+            </MoodProvider>
+          </Router>
+        </AdProvider>
       </ThemeProvider>
     </HelmetProvider>
   );

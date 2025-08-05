@@ -1,0 +1,121 @@
+/* CookieConsent.css - Styles for cookie consent banner */
+
+.cookie-consent {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  z-index: 9999;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.cookie-consent-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.cookie-consent-text {
+  flex: 1;
+}
+
+.cookie-consent-text h4 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.cookie-consent-text p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+.cookie-consent-buttons {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.cookie-consent-decline,
+.cookie-consent-accept {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cookie-consent-decline {
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.cookie-consent-decline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.cookie-consent-accept {
+  background: #667eea;
+  color: white;
+}
+
+.cookie-consent-accept:hover {
+  background: #5a6fd8;
+  transform: translateY(-1px);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .cookie-consent {
+    padding: 15px;
+  }
+  
+  .cookie-consent-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+  
+  .cookie-consent-buttons {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .cookie-consent-decline,
+  .cookie-consent-accept {
+    flex: 1;
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cookie-consent {
+    padding: 12px;
+  }
+  
+  .cookie-consent-text h4 {
+    font-size: 16px;
+  }
+  
+  .cookie-consent-text p {
+    font-size: 13px;
+  }
+  
+  .cookie-consent-decline,
+  .cookie-consent-accept {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+} 
