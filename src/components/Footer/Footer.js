@@ -1,13 +1,13 @@
 import React from "react";
 import "./Footer.css";
 import { Link } from "react-router-dom";
-import AdPlaceholder from "../Ads/AdPlaceholder"; // NEW: Import ad component
+// import AdPlaceholder from "../Ads/AdPlaceholder"; // NEW: Import ad component
 
 const Footer = () => {
   return (
     <>
       {/* Footer Ad */}
-      <AdPlaceholder position="footer" category="merchandise" />
+      {/* <AdPlaceholder position="footer" category="merchandise" /> */}
       
       <footer className="footer">
         <div className="footer-content">

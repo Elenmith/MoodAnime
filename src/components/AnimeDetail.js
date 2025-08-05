@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
 import SEO from "./SEO/SEO";
-import AdPlaceholder from "./Ads/AdPlaceholder"; // NEW: Import ad component
+// import AdPlaceholder from "./Ads/AdPlaceholder"; // NEW: Import ad component
 import "./AnimeDetail.css";
 
 const AnimeDetail = () => {
@@ -97,7 +97,7 @@ const AnimeDetail = () => {
       />
       
       {/* Header Ad */}
-      <AdPlaceholder position="header" category="anime" />
+      {/* <AdPlaceholder position="header" category="anime" /> */}
       
       <div className="anime-detail-container">
         {loading ? (
@@ -152,7 +152,7 @@ const AnimeDetail = () => {
             </div>
 
             {/* Content Ad */}
-            <AdPlaceholder position="content" category="anime" />
+            {/* <AdPlaceholder position="content" category="anime" /> */}
 
             {/* Main Content */}
             <div className="anime-main-content">
@@ -194,7 +194,7 @@ const AnimeDetail = () => {
                 </section>
 
                 {/* Inline Ad */}
-                <AdPlaceholder position="inline" category="figures" />
+                {/* <AdPlaceholder position="inline" category="figures" /> */}
 
                 {/* Gallery */}
                 {anime.gallery && anime.gallery.length > 0 && (
@@ -214,7 +214,7 @@ const AnimeDetail = () => {
               {/* Right Column */}
               <div className="content-sidebar">
                 {/* Sidebar Ad */}
-                <AdPlaceholder position="sidebar" category="figures" />
+                {/* <AdPlaceholder position="sidebar" category="figures" /> */}
                 
                 {/* Genres */}
                 {anime.genres && anime.genres.length > 0 && (

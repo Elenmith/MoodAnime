@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { MoodProvider } from "./context/MoodContext";
 import { CategoryProvider } from "./context/CategoryContext"; 
 import { ThemeProvider } from "./context/ThemeContext";
-import { AdProvider } from "./context/AdContext"; // NEW: Ad context
+// import { AdProvider } from "./context/AdContext"; // NEW: Ad context
 import MoodPage from "./components/MoodPage/MoodPage";
 import AnimeDetail from "./components/AnimeDetail";
 import Footer from "./components/Footer/Footer";
@@ -19,7 +19,7 @@ import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
 import PrivacyPolicy from "./components/PrivacyPolicy/PrivacyPolicy";
 import TermsOfService from "./components/TermsOfService/TermsOfService";
-import CookieConsent from "./components/Ads/CookieConsent"; // NEW: Cookie consent
+// import CookieConsent from "./components/Ads/CookieConsent"; // NEW: Cookie consent
 
 function App() {
   const [animeList, setAnimeList] = useState([]);
@@ -36,7 +36,7 @@ function App() {
   return (
     <HelmetProvider>
       <ThemeProvider>
-        <AdProvider> {/* NEW: Wrap with AdProvider */}
+        {/* <AdProvider> NEW: Wrap with AdProvider */}
           <Router>
             <MoodProvider>
               <CategoryProvider> 
@@ -56,12 +56,12 @@ function App() {
                     <Route path="*" element={<NotFound />} />
                   </Routes>
                   <Footer />
-                  <CookieConsent /> {/* NEW: Cookie consent banner */}
+                  {/* <CookieConsent /> NEW: Cookie consent banner */}
                 </div>
               </CategoryProvider>
             </MoodProvider>
           </Router>
-        </AdProvider>
+        {/* </AdProvider> */}
       </ThemeProvider>
     </HelmetProvider>
   );
