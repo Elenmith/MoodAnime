@@ -57,11 +57,15 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  filter: blur(2px);
-  transform: scale(1.1);
+  background: linear-gradient(135deg, 
+    var(--accent-color) 0%, 
+    var(--accent-hover) 25%, 
+    var(--secondary-accent) 50%, 
+    var(--accent-color) 75%, 
+    var(--accent-hover) 100%
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 8s ease infinite;
 }
 
 .hero-overlay {
@@ -72,8 +76,8 @@
   bottom: 0;
   background: linear-gradient(
     to bottom,
-    transparent 0%,
-    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.4) 50%,
     rgba(0, 0, 0, 0.8) 100%
   );
 }
@@ -137,23 +141,29 @@
   font-weight: 700;
   margin: 0 0 8px 0;
   line-height: 1.1;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 0.6);
+  background: linear-gradient(45deg, #ffffff, #f0f0f0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .anime-title-english {
   font-size: 1.5rem;
   font-weight: 400;
   margin: 0 0 8px 0;
-  opacity: 0.9;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  opacity: 0.95;
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.7);
+  color: #f8f8f8;
 }
 
 .anime-title-japanese {
   font-size: 1.2rem;
   font-weight: 300;
   margin: 0 0 20px 0;
-  opacity: 0.8;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  opacity: 0.9;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  color: #e8e8e8;
 }
 
 .anime-meta {
@@ -170,14 +180,18 @@
 
 .meta-label {
   font-size: 0.9rem;
-  opacity: 0.8;
+  opacity: 0.9;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  color: #f0f0f0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .meta-value {
   font-size: 1rem;
   font-weight: 500;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 /* Main Content */
@@ -530,7 +544,7 @@
 .dark-mode .hero-overlay {
   background: linear-gradient(
     to bottom,
-    transparent 0%,
+    rgba(0, 0, 0, 0.3) 0%,
     rgba(0, 0, 0, 0.5) 50%,
     rgba(0, 0, 0, 0.9) 100%
   );
@@ -540,6 +554,12 @@
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 /* Focus styles for accessibility */
@@ -561,7 +581,6 @@
   }
   
   .hero-background {
-    filter: blur(0);
-    transform: none;
+    animation: none;
   }
 }

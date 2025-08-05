@@ -11,6 +11,7 @@
   --text-secondary: #666666;
   --accent-color: #667eea;
   --accent-hover: #5a6fd8;
+  --secondary-accent: #764ba2;
   --border-color: #e1e5e9;
   --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   --shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.15);
@@ -47,6 +48,7 @@
   --text-secondary: #cccccc;
   --accent-color: #667eea;
   --accent-hover: #5a6fd8;
+  --secondary-accent: #9b6bcc;
   --border-color: #404040;
   --shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
   --shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.4);
