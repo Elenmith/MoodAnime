@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Header.css";
 import { Link, useLocation } from "react-router-dom";
+import ThemeToggle from "../ThemeToggle/ThemeToggle";
 
 function Logo() {
   return (
@@ -68,13 +69,14 @@ function SearchNav() {
             position: "absolute",
             top: "40px",
             width: "100%",
-            background: "#fff",
-            border: "1px solid #ccc",
+            background: "var(--card-bg)",
+            border: "1px solid var(--border-color)",
             borderRadius: "5px",
             listStyle: "none",
             padding: "0",
             margin: "0",
             zIndex: 1000,
+            boxShadow: "var(--shadow)",
           }}
         >
           {results.map((anime) => (
@@ -86,7 +88,11 @@ function SearchNav() {
                 cursor: "pointer",
                 display: "flex",
                 alignItems: "center",
+                color: "var(--text-primary)",
+                transition: "background-color 0.2s ease",
               }}
+              onMouseEnter={(e) => e.target.style.backgroundColor = "var(--hover-bg)"}
+              onMouseLeave={(e) => e.target.style.backgroundColor = "transparent"}
             >
               <img
                 src={anime.imageUrl || "https://via.placeholder.com/40"}
@@ -118,6 +124,7 @@ function NavLinks({ isOpen, onLinkClick }) {
 function NavSocial() {
   return (
     <div className="header__icons">
+      <ThemeToggle />
       <button className="header__icon header__icon--youtube">
         <i className="fa fa-youtube"></i>
       </button>

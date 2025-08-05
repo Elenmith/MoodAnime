@@ -11,7 +11,7 @@ const Carousel = ({ animeList, speed = 2000, autoplaySpeed = 3000 }) => {
   // Losowe sortowanie tablicy anime
   const shuffledAnimeList = [...animeList]
     .sort(() => Math.random() - 0.5)
-    .slice(0, 50);
+    .slice(0, 20); // Zmniejszam do 20 anime dla lepszej wydajności
 
   useEffect(() => {
     // Krótkie opóźnienie żeby pokazać loading state
@@ -27,36 +27,45 @@ const Carousel = ({ animeList, speed = 2000, autoplaySpeed = 3000 }) => {
     e.target.src = 'https://via.placeholder.com/200x300/cccccc/666666?text=Anime';
   };
 
-  // Responsywne ustawienia karuzeli
+  // Poprawione ustawienia karuzeli
   const settings = {
     infinite: true,
-    speed: 40000,
+    speed: 1000, // Wolniejsza animacja
     slidesToShow: 5,
-    slidesToScroll: 20,
+    slidesToScroll: 1, // Przewijaj po 1 slajdzie
     autoplay: true,
-    autoplaySpeed: 0,
-    cssEase: "linear",
-    pauseOnHover: false,
+    autoplaySpeed: 3000, // 3 sekundy między slajdami
+    cssEase: "ease-in-out",
+    pauseOnHover: true, // Zatrzymaj na hover
+    dots: false,
+    arrows: false,
     responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+        }
+      },
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 4,
-          slidesToScroll: 15,
+          slidesToShow: 3,
+          slidesToScroll: 1,
         }
       },
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 10,
+          slidesToShow: 2,
+          slidesToScroll: 1,
         }
       },
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 5,
+          slidesToShow: 1,
+          slidesToScroll: 1,
         }
       }
     ]
@@ -96,6 +105,10 @@ const Carousel = ({ animeList, speed = 2000, autoplaySpeed = 3000 }) => {
               onError={handleImageError}
               loading="lazy"
             />
+            <div className="carousel-slide-overlay">
+              <h3>{anime.title}</h3>
+              <p className="rating">⭐ {anime.rating}</p>
+            </div>
           </div>
         ))}
       </Slider>

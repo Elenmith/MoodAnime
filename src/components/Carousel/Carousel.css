@@ -1,71 +1,210 @@
 .carousel-container {
-  margin: 20px auto;
   width: 100%;
   max-width: 1200px;
-  padding: 0 20px;
+  margin: 0 auto;
+  padding: 20px 0;
+  background: var(--secondary-bg);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.carousel-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  color: var(--text-secondary);
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--border-color);
+  border-top: 4px solid var(--accent-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.carousel-error {
+  text-align: center;
+  padding: 40px;
+  color: var(--error-color);
+  background: rgba(220, 53, 69, 0.1);
+  border-radius: 8px;
+  margin: 20px;
 }
 
 .carousel-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 10px;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .carousel-slide:hover {
-  transform: scale(1.05);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
 }
 
 .carousel-slide img {
   width: 100%;
-  max-width: 200px;
-  height: auto;
+  height: 300px;
+  object-fit: cover;
   border-radius: 8px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  transition: box-shadow 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .carousel-slide:hover img {
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+  transform: scale(1.05);
 }
 
-.carousel-h2 {
-  color: #161616;
-  text-align: center;
-  margin: 30px 0 20px 0;
-  font-size: 24px;
+.carousel-slide-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: white;
+  padding: 20px 15px 15px;
+  border-radius: 0 0 8px 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  transform: translateY(10px);
+}
+
+.carousel-slide:hover .carousel-slide-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.carousel-slide-overlay h3 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
   font-weight: 600;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-/* Responsive styles */
+.carousel-slide-overlay .rating {
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+/* Slick Carousel Customization */
+.slick-slide {
+  padding: 0 5px;
+}
+
+.slick-track {
+  display: flex !important;
+  align-items: stretch;
+}
+
+.slick-slide > div {
+  height: 100%;
+}
+
+.slick-slide > div > div {
+  height: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .carousel-slide img {
+    height: 280px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .carousel-slide img {
+    height: 260px;
+  }
+  
+  .carousel-slide-overlay h3 {
+    font-size: 13px;
+  }
+}
+
 @media (max-width: 768px) {
   .carousel-container {
-    padding: 0 10px;
+    padding: 15px 0;
   }
   
   .carousel-slide {
-    padding: 5px;
+    padding: 8px;
   }
   
   .carousel-slide img {
-    max-width: 150px;
+    height: 240px;
   }
   
-  .carousel-h2 {
-    font-size: 20px;
-    margin: 20px 0 15px 0;
+  .carousel-slide-overlay {
+    padding: 15px 12px 12px;
+  }
+  
+  .carousel-slide-overlay h3 {
+    font-size: 12px;
+  }
+  
+  .carousel-slide-overlay .rating {
+    font-size: 11px;
   }
 }
 
 @media (max-width: 480px) {
   .carousel-slide img {
-    max-width: 120px;
+    height: 200px;
   }
   
-  .carousel-h2 {
-    font-size: 18px;
-    margin: 15px 0 10px 0;
+  .carousel-slide-overlay {
+    padding: 12px 10px 10px;
+  }
+  
+  .carousel-slide-overlay h3 {
+    font-size: 11px;
+  }
+  
+  .carousel-slide-overlay .rating {
+    font-size: 10px;
+  }
+}
+
+/* Dark mode specific adjustments */
+.dark-mode .carousel-container {
+  background: var(--secondary-bg);
+}
+
+.dark-mode .carousel-slide-overlay {
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+}
+
+/* Focus styles for accessibility */
+.carousel-slide:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .carousel-slide,
+  .carousel-slide img,
+  .carousel-slide-overlay {
+    transition: none;
+  }
+  
+  .loading-spinner {
+    animation: none;
   }
 }

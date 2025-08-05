@@ -2,6 +2,79 @@
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
 
+/* CSS Variables for Theme System */
+:root {
+  /* Light Mode Colors */
+  --primary-bg: #ffffff;
+  --secondary-bg: #f8f9fa;
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --accent-color: #667eea;
+  --accent-hover: #5a6fd8;
+  --border-color: #e1e5e9;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.15);
+  
+  /* Theme Toggle Colors */
+  --toggle-bg: #e1e5e9;
+  --toggle-border: #d1d5d9;
+  --toggle-thumb-bg-light: #ffffff;
+  --toggle-thumb-bg-dark: #f39c12;
+  --icon-color: #666666;
+  --hover-bg: rgba(102, 126, 234, 0.1);
+  
+  /* Component Colors */
+  --card-bg: #ffffff;
+  --card-border: #e1e5e9;
+  --input-bg: #ffffff;
+  --input-border: #d1d5d9;
+  --button-bg: #667eea;
+  --button-text: #ffffff;
+  --button-hover: #5a6fd8;
+  
+  /* Status Colors */
+  --success-color: #28a745;
+  --error-color: #dc3545;
+  --warning-color: #ffc107;
+  --info-color: #17a2b8;
+}
+
+/* Dark Mode Colors */
+.dark-mode {
+  --primary-bg: #1a1a1a;
+  --secondary-bg: #2d2d2d;
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --accent-color: #667eea;
+  --accent-hover: #5a6fd8;
+  --border-color: #404040;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  --shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.4);
+  
+  /* Theme Toggle Colors */
+  --toggle-bg: #404040;
+  --toggle-border: #555555;
+  --toggle-thumb-bg-light: #ffffff;
+  --toggle-thumb-bg-dark: #f39c12;
+  --icon-color: #ffffff;
+  --hover-bg: rgba(102, 126, 234, 0.2);
+  
+  /* Component Colors */
+  --card-bg: #2d2d2d;
+  --card-border: #404040;
+  --input-bg: #2d2d2d;
+  --input-border: #404040;
+  --button-bg: #667eea;
+  --button-text: #ffffff;
+  --button-hover: #5a6fd8;
+  
+  /* Status Colors */
+  --success-color: #28a745;
+  --error-color: #dc3545;
+  --warning-color: #ffc107;
+  --info-color: #17a2b8;
+}
+
 /* Performance Optimization CSS */
 * {
   box-sizing: border-box;
@@ -19,8 +92,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.6;
-  color: #333;
-  background-color: #f8f9fa;
+  color: var(--text-primary);
+  background-color: var(--primary-bg);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Performance optimizations */
@@ -42,7 +116,7 @@ img[loading="lazy"].loaded {
 
 /* Focus styles for accessibility */
 *:focus {
-  outline: 2px solid #667eea;
+  outline: 2px solid var(--accent-color);
   outline-offset: 2px;
 }
 
@@ -51,8 +125,8 @@ img[loading="lazy"].loaded {
   position: absolute;
   top: -40px;
   left: 6px;
-  background: #667eea;
-  color: white;
+  background: var(--accent-color);
+  color: var(--button-text);
   padding: 8px;
   text-decoration: none;
   border-radius: 4px;
@@ -71,9 +145,9 @@ img[loading="lazy"].loaded {
 
 /* Error states */
 .error {
-  color: #dc3545;
-  background-color: #f8d7da;
-  border: 1px solid #f5c6cb;
+  color: var(--error-color);
+  background-color: rgba(220, 53, 69, 0.1);
+  border: 1px solid var(--error-color);
   border-radius: 4px;
   padding: 10px;
   margin: 10px 0;
@@ -81,9 +155,9 @@ img[loading="lazy"].loaded {
 
 /* Success states */
 .success {
-  color: #155724;
-  background-color: #d4edda;
-  border: 1px solid #c3e6cb;
+  color: var(--success-color);
+  background-color: rgba(40, 167, 69, 0.1);
+  border: 1px solid var(--success-color);
   border-radius: 4px;
   padding: 10px;
   margin: 10px 0;
@@ -139,18 +213,6 @@ img[loading="lazy"].loaded {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
-  }
-}
-
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #1a1a1a;
-    color: #ffffff;
-  }
-  
-  .app-container {
-    background-color: #1a1a1a;
   }
 }
 

@@ -1,0 +1,104 @@
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-toggle:hover {
+  background-color: var(--hover-bg);
+  transform: scale(1.1);
+}
+
+.theme-toggle:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+.toggle-track {
+  width: 48px;
+  height: 24px;
+  background: var(--toggle-bg);
+  border-radius: 12px;
+  position: relative;
+  transition: all 0.3s ease;
+  border: 2px solid var(--toggle-border);
+}
+
+.toggle-thumb {
+  width: 20px;
+  height: 20px;
+  background: var(--toggle-thumb-bg);
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Dark mode - thumb po prawej */
+.dark-mode .toggle-thumb {
+  transform: translateX(24px);
+  background: var(--toggle-thumb-bg-dark);
+}
+
+/* Light mode - thumb po lewej */
+.light-mode .toggle-thumb {
+  transform: translateX(0);
+  background: var(--toggle-thumb-bg-light);
+}
+
+.sun-icon,
+.moon-icon {
+  width: 14px;
+  height: 14px;
+  stroke: var(--icon-color);
+  stroke-width: 2;
+  transition: all 0.3s ease;
+}
+
+.sun-icon {
+  opacity: 1;
+  transform: rotate(0deg);
+}
+
+.moon-icon {
+  opacity: 1;
+  transform: rotate(0deg);
+}
+
+/* Animacja przy przełączaniu */
+.theme-toggle:active .toggle-thumb {
+  transform: scale(0.9);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .toggle-track {
+    width: 40px;
+    height: 20px;
+  }
+  
+  .toggle-thumb {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .dark-mode .toggle-thumb {
+    transform: translateX(20px);
+  }
+  
+  .sun-icon,
+  .moon-icon {
+    width: 12px;
+    height: 12px;
+  }
+} 
