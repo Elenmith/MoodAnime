@@ -8,10 +8,15 @@ const Carousel = ({ animeList, speed = 2000, autoplaySpeed = 3000 }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Debug logging
+  console.log("🎠 Carousel received animeList:", animeList?.length || 0, "items");
+
   // Losowe sortowanie tablicy anime
   const shuffledAnimeList = [...animeList]
     .sort(() => Math.random() - 0.5)
     .slice(0, 20); // Zmniejszam do 20 anime dla lepszej wydajności
+
+  console.log("🎠 Carousel shuffled list:", shuffledAnimeList?.length || 0, "items");
 
   useEffect(() => {
     // Krótkie opóźnienie żeby pokazać loading state

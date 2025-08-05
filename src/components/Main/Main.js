@@ -43,14 +43,25 @@ function Main() {
       try {
         setCarouselLoading(true);
         setCarouselError(null);
-        const response = await fetch(`${API_URL}/api/anime/random-categories`);
+        
+        // Próbuj najpierw random-categories
+        let response = await fetch(`${API_URL}/api/anime/random-categories`);
+        
+        // Jeśli nie działa, użyj posters jako fallback
         if (!response.ok) {
-          throw new Error('Failed to fetch random anime');
+          console.log("⚠️ random-categories nie działa, używam posters jako fallback");
+          response = await fetch(`${API_URL}/api/anime/posters`);
         }
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch anime data');
+        }
+        
         const data = await response.json();
+        console.log(`✅ Pobrano ${data.length} anime dla karuzeli`);
         setAnimeList(data);
       } catch (err) {
-        console.error("Error fetching random anime:", err);
+        console.error("Error fetching anime for carousel:", err);
         setCarouselError("Nie udało się załadować anime. Spróbuj odświeżyć stronę.");
       } finally {
         setCarouselLoading(false);
