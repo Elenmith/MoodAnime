@@ -4,6 +4,7 @@ import axios from "axios";
 import "./Header.css";
 import { Link, useLocation } from "react-router-dom";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
+import { useUser } from "../../context/UserContext";
 
 function Logo() {
   return (
@@ -121,10 +122,64 @@ function NavLinks({ isOpen, onLinkClick }) {
   );
 }
 
+function UserMenu() {
+  const { user, isAuthenticated, logout } = useUser();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleLogout = () => {
+    logout();
+    setIsOpen(false);
+  };
+
+  if (!isAuthenticated) {
+    return (
+      <Link to="/auth" className="header__auth-button">
+        Sign In
+      </Link>
+    );
+  }
+
+  return (
+    <div className="header__user-menu">
+      <button
+        className="header__user-button"
+        onClick={() => setIsOpen(!isOpen)}
+        aria-label="User menu"
+      >
+        {user?.avatar ? (
+          <img src={user.avatar} alt={user.username} className="header__user-avatar" />
+        ) : (
+          <div className="header__user-avatar-placeholder">
+            {user?.username?.charAt(0).toUpperCase()}
+          </div>
+        )}
+      </button>
+      
+      {isOpen && (
+        <div className="header__user-dropdown">
+          <div className="header__user-info">
+            <span className="header__user-name">{user?.username}</span>
+            <span className="header__user-email">{user?.email}</span>
+          </div>
+          <Link to="/profile" className="header__dropdown-item" onClick={() => setIsOpen(false)}>
+            <i className="fa fa-user"></i>
+            Profile
+          </Link>
+          <button className="header__dropdown-item" onClick={handleLogout}>
+            <i className="fa fa-sign-out"></i>
+            Sign Out
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
 function NavSocial() {
   return (
     <div className="header__icons">
       <ThemeToggle />
+      <UserMenu />
       <button className="header__icon header__icon--youtube">
         <i className="fa fa-youtube"></i>
       </button>
