@@ -114,8 +114,8 @@ const AnimeDetail = () => {
             </button>
           </div>
         ) : (
-          <div className="anime-content">
-            {/* Hero Section */}
+          <>
+            {/* Hero Section - Full Width */}
             <div className="anime-hero">
               <div className="hero-background"></div>
               <div className="hero-overlay"></div>
@@ -159,7 +159,8 @@ const AnimeDetail = () => {
             {/* <AdPlaceholder position="content" category="anime" /> */}
 
             {/* Main Content */}
-            <div className="content-grid">
+            <div className="anime-content">
+              <div className="content-grid">
               {/* Left Column */}
               <div className="content-main">
                 {/* Characters */}
@@ -284,6 +285,7 @@ const AnimeDetail = () => {
               </div>
             </div>
           </div>
+          </>
         )}
       </div>
     </>
