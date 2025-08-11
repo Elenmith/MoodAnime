@@ -99,7 +99,7 @@ const AnimeDetail = () => {
       {/* Header Ad */}
       {/* <AdPlaceholder position="header" category="anime" /> */}
       
-      <div className="anime-detail-container">
+      <div className="anime-detail">
         {loading ? (
           <div className="anime-detail-loading">
             <div className="loading-spinner"></div>
@@ -114,31 +114,32 @@ const AnimeDetail = () => {
             </button>
           </div>
         ) : (
-          <div className="anime-detail-content">
+          <div className="anime-content">
             {/* Hero Section */}
             <div className="anime-hero">
-              <div className="anime-poster">
-                <img src={anime.imageUrl} alt={anime.title} />
-              </div>
-              <div className="anime-info">
+              <div className="hero-content">
+                <div className="hero-poster">
+                  <img src={anime.imageUrl} alt={anime.title} />
+                </div>
+                <div className="hero-info">
                 <h1 className="anime-title">{anime.title}</h1>
                 <div className="anime-meta">
                   {anime.rating && (
-                    <div className="rating">
-                      <span className="rating-label">Rating:</span>
-                      <span className="rating-value">{anime.rating}/10</span>
+                    <div className="meta-item">
+                      <span className="meta-label">Rating</span>
+                      <span className="meta-value">{anime.rating}/10</span>
                     </div>
                   )}
                   {anime.duration && (
-                    <div className="duration">
-                      <span className="duration-label">Duration:</span>
-                      <span className="duration-value">{anime.duration}</span>
+                    <div className="meta-item">
+                      <span className="meta-label">Duration</span>
+                      <span className="meta-value">{anime.duration}</span>
                     </div>
                   )}
                   {anime.releaseDate && (
-                    <div className="release-date">
-                      <span className="release-label">Released:</span>
-                      <span className="release-value">{anime.releaseDate}</span>
+                    <div className="meta-item">
+                      <span className="meta-label">Released</span>
+                      <span className="meta-value">{anime.releaseDate}</span>
                     </div>
                   )}
                 </div>
@@ -150,12 +151,13 @@ const AnimeDetail = () => {
                 )}
               </div>
             </div>
+            </div>
 
             {/* Content Ad */}
             {/* <AdPlaceholder position="content" category="anime" /> */}
 
             {/* Main Content */}
-            <div className="anime-main-content">
+            <div className="content-grid">
               {/* Left Column */}
               <div className="content-main">
                 {/* Characters */}
