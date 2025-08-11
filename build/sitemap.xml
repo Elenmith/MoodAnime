@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://mood4anime.com/</loc>
+    <lastmod>2025-08-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Main sections -->
+  <url>
+    <loc>https://mood4anime.com/moods</loc>
+    <lastmod>2025-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://mood4anime.com/categories</loc>
+    <lastmod>2025-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://mood4anime.com/search</loc>
+    <lastmod>2025-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Popular moods -->
+  <url>
+    <loc>https://mood4anime.com/moods/happy</loc>
+    <lastmod>2025-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://mood4anime.com/moods/sad</loc>
+    <lastmod>2025-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://mood4anime.com/moods/excited</loc>
+    <lastmod>2025-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://mood4anime.com/moods/relaxed</loc>
+    <lastmod>2025-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://mood4anime.com/moods/motivated</loc>
+    <lastmod>2025-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Popular genres -->
+  <url>
+    <loc>https://mood4anime.com/categories/action</loc>
+    <lastmod>2025-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://mood4anime.com/categories/comedy</loc>
+    <lastmod>2025-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://mood4anime.com/categories/drama</loc>
+    <lastmod>2025-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://mood4anime.com/categories/fantasy</loc>
+    <lastmod>2025-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://mood4anime.com/categories/romance</loc>
+    <lastmod>2025-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://mood4anime.com/categories/sci-fi</loc>
+    <lastmod>2025-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://mood4anime.com/categories/thriller</loc>
+    <lastmod>2025-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://mood4anime.com/categories/adventure</loc>
+    <lastmod>2025-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>
