@@ -1,144 +1,202 @@
 .profile-container {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 0;
+  background: var(--bg-color);
+  min-height: 100vh;
 }
 
-.profile-card {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-}
-
-.profile-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #e1e5e9;
-}
-
-.profile-header h2 {
-  margin: 0;
-  color: #333;
-  font-size: 24px;
-  font-weight: 600;
-}
-
-.edit-button {
-  background: #667eea;
+/* Hero Section */
+.profile-hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.edit-button:hover {
-  background: #5a67d8;
-  transform: translateY(-1px);
-}
-
-.profile-loading,
-.profile-error {
-  text-align: center;
   padding: 60px 20px;
+  margin-bottom: 0;
 }
 
-.loading-spinner {
-  width: 40px;
-  height: 40px;
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #667eea;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin: 0 auto 20px;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.profile-info {
+.profile-hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
-  gap: 30px;
-  align-items: flex-start;
+  align-items: center;
+  gap: 40px;
 }
 
-.profile-avatar {
+.profile-avatar-large {
   flex-shrink: 0;
 }
 
-.profile-avatar img {
-  width: 120px;
-  height: 120px;
+.profile-avatar-large img {
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   object-fit: cover;
-  border: 4px solid #f8f9fa;
+  border: 6px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
-.avatar-placeholder {
-  width: 120px;
-  height: 120px;
+.avatar-placeholder-large {
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: rgba(255, 255, 255, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 48px;
+  font-size: 60px;
   font-weight: 600;
   color: white;
-  border: 4px solid #f8f9fa;
+  border: 6px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
-.profile-details {
+.profile-hero-info {
   flex: 1;
 }
 
-.profile-details h3 {
+.profile-hero-info h1 {
   margin: 0 0 8px 0;
-  color: #333;
-  font-size: 28px;
-  font-weight: 600;
+  font-size: 36px;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .user-email {
-  color: #666;
+  color: rgba(255, 255, 255, 0.9);
   margin: 0 0 16px 0;
-  font-size: 16px;
+  font-size: 18px;
 }
 
-.user-bio {
-  color: #555;
+.user-bio-hero {
+  color: rgba(255, 255, 255, 0.9);
   line-height: 1.6;
   margin: 0 0 24px 0;
   font-size: 16px;
+  max-width: 600px;
 }
 
-.user-stats {
+.profile-actions {
   display: flex;
-  gap: 30px;
-  margin-bottom: 30px;
-  padding: 20px;
-  background: #f8f9fa;
-  border-radius: 8px;
+  gap: 16px;
 }
 
-.stat-item {
-  text-align: center;
+.edit-profile-button {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.edit-profile-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Content Section */
+.profile-content {
+  background: white;
+  border-radius: 20px 20px 0 0;
+  margin-top: -20px;
+  padding: 40px 20px;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Tabs */
+.profile-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 40px;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 0;
+}
+
+.tab-button {
+  background: none;
+  border: none;
+  padding: 16px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent;
+  position: relative;
+}
+
+.tab-button:hover {
+  color: #667eea;
+}
+
+.tab-button.active {
+  color: #667eea;
+  border-bottom-color: #667eea;
+}
+
+/* Tab Content */
+.profile-tab-content {
+  min-height: 400px;
+}
+
+/* Overview Tab */
+.overview-tab {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.stat-card {
+  background: #f8f9fa;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-color: #667eea;
+}
+
+.stat-icon {
+  font-size: 32px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  color: white;
+}
+
+.stat-content {
+  flex: 1;
 }
 
 .stat-number {
   display: block;
-  font-size: 24px;
-  font-weight: 600;
-  color: #667eea;
+  font-size: 28px;
+  font-weight: 700;
+  color: #333;
   margin-bottom: 4px;
 }
 
@@ -147,53 +205,356 @@
   color: #666;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-}
-
-.user-preferences h4 {
-  margin: 0 0 16px 0;
-  color: #333;
-  font-size: 18px;
   font-weight: 600;
 }
 
-.preference-section {
+/* Recent Activity */
+.recent-activity h3 {
+  margin: 0 0 20px 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+}
+
+.recent-anime {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.recent-anime-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.recent-anime-item:hover {
+  background: #e9ecef;
+  transform: translateX(4px);
+}
+
+.anime-poster img {
+  width: 60px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.anime-info h4 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-completed {
+  background: #d4edda;
+  color: #155724;
+}
+
+.status-watching {
+  background: #d1ecf1;
+  color: #0c5460;
+}
+
+.status-plan_to_watch {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status-dropped {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.no-activity {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  padding: 40px 20px;
+}
+
+/* Watchlist Tab */
+.watchlist-tab {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.watchlist-filters {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.filter-button {
+  background: #f8f9fa;
+  border: 2px solid #e9ecef;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-button:hover {
+  background: #e9ecef;
+  border-color: #667eea;
+}
+
+.filter-button.active {
+  background: #667eea;
+  border-color: #667eea;
+  color: white;
+}
+
+.watchlist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 24px;
+}
+
+.watchlist-item {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.watchlist-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  border-color: #667eea;
+}
+
+.anime-poster {
+  position: relative;
+  overflow: hidden;
+}
+
+.anime-poster img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.watchlist-item:hover .anime-poster img {
+  transform: scale(1.05);
+}
+
+.anime-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.watchlist-item:hover .anime-overlay {
+  opacity: 1;
+}
+
+.view-button {
+  background: #667eea;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.view-button:hover {
+  background: #5a67d8;
+  transform: scale(1.05);
+}
+
+.anime-details {
+  padding: 16px;
+}
+
+.anime-details h4 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  line-height: 1.4;
+}
+
+.rating {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stars {
+  color: #ffc107;
+  font-size: 14px;
+}
+
+.rating-text {
+  font-size: 12px;
+  color: #666;
+  font-weight: 600;
+}
+
+.empty-watchlist {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.empty-icon {
+  font-size: 64px;
   margin-bottom: 20px;
 }
 
-.preference-section strong {
-  display: block;
-  margin-bottom: 8px;
-  color: #555;
-  font-size: 14px;
+.empty-watchlist h3 {
+  margin: 0 0 12px 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+}
+
+.empty-watchlist p {
+  color: #666;
+  margin: 0 0 24px 0;
+}
+
+.browse-button {
+  background: #667eea;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.browse-button:hover {
+  background: #5a67d8;
+  transform: translateY(-2px);
+}
+
+/* Preferences Tab */
+.preferences-tab {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.preferences-section h3 {
+  margin: 0 0 20px 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
 }
 
 .tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 12px;
 }
 
 .tag {
-  background: #667eea;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 4px 12px;
+  padding: 8px 16px;
   border-radius: 20px;
-  font-size: 12px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.no-preferences {
+  color: #666;
+  font-style: italic;
+  padding: 20px;
+  text-align: center;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.account-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.info-label {
+  font-weight: 600;
+  color: #333;
+}
+
+.info-value {
+  color: #666;
+}
+
+/* Edit Profile Section */
+.profile-edit-section {
+  background: #f8f9fa;
+  border-radius: 16px;
+  padding: 30px;
+  margin-bottom: 30px;
+}
+
+.profile-edit-section h3 {
+  margin: 0 0 24px 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
 }
 
 .profile-form {
-  max-width: 500px;
+  max-width: 600px;
 }
 
 .profile-form .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .profile-form label {
   display: block;
   margin-bottom: 8px;
-  font-weight: 500;
+  font-weight: 600;
   color: #333;
   font-size: 14px;
 }
@@ -201,12 +562,12 @@
 .profile-form input,
 .profile-form textarea {
   width: 100%;
-  padding: 12px 16px;
+  padding: 14px 18px;
   border: 2px solid #e1e5e9;
-  border-radius: 8px;
+  border-radius: 12px;
   font-size: 16px;
-  transition: all 0.2s ease;
-  background: #fafbfc;
+  transition: all 0.3s ease;
+  background: white;
   box-sizing: border-box;
 }
 
@@ -214,8 +575,7 @@
 .profile-form textarea:focus {
   outline: none;
   border-color: #667eea;
-  background: white;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
 }
 
 .profile-form input.error,
@@ -226,12 +586,12 @@
 
 .profile-form textarea {
   resize: vertical;
-  min-height: 100px;
+  min-height: 120px;
 }
 
 .form-actions {
   display: flex;
-  gap: 12px;
+  gap: 16px;
   margin-top: 30px;
 }
 
@@ -239,86 +599,173 @@
   background: #6c757d;
   color: white;
   border: none;
-  padding: 12px 24px;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 500;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .cancel-button:hover:not(:disabled) {
   background: #5a6268;
+  transform: translateY(-2px);
 }
 
 .save-button {
   background: #28a745;
   color: white;
   border: none;
-  padding: 12px 24px;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 500;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .save-button:hover:not(:disabled) {
   background: #218838;
+  transform: translateY(-2px);
 }
 
 .cancel-button:disabled,
 .save-button:disabled {
   opacity: 0.7;
   cursor: not-allowed;
+  transform: none;
 }
 
+/* Error and Help Messages */
 .error-message {
   background: #fdf2f2;
-  border: 1px solid #fecaca;
+  border: 2px solid #fecaca;
   color: #dc2626;
-  padding: 12px 16px;
-  border-radius: 8px;
-  margin-bottom: 20px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  margin-bottom: 24px;
   font-size: 14px;
+  font-weight: 600;
 }
 
 .error-text {
   color: #e74c3c;
   font-size: 12px;
-  margin-top: 4px;
+  margin-top: 6px;
   display: block;
+  font-weight: 600;
 }
 
 .help-text {
   color: #666;
   font-size: 12px;
-  margin-top: 4px;
+  margin-top: 6px;
   display: block;
 }
 
-/* Responsive design */
+/* Loading and Error States */
+.profile-loading,
+.profile-error {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 24px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.profile-error h2 {
+  margin: 0 0 16px 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+}
+
+.profile-error p {
+  color: #666;
+  margin: 0 0 24px 0;
+}
+
+.auth-link {
+  background: #667eea;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.auth-link:hover {
+  background: #5a67d8;
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-  .profile-container {
-    padding: 10px;
+  .profile-hero {
+    padding: 40px 16px;
   }
   
-  .profile-card {
+  .profile-hero-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 24px;
+  }
+  
+  .profile-avatar-large img,
+  .avatar-placeholder-large {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .profile-hero-info h1 {
+    font-size: 28px;
+  }
+  
+  .profile-content {
+    padding: 24px 16px;
+  }
+  
+  .profile-tabs {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  
+  .tab-button {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+  }
+  
+  .stat-card {
     padding: 20px;
   }
   
-  .profile-info {
-    flex-direction: column;
-    text-align: center;
+  .stat-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
   }
   
-  .profile-avatar {
-    margin: 0 auto 20px;
-  }
-  
-  .user-stats {
-    justify-content: center;
-    gap: 20px;
+  .watchlist-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
   }
   
   .form-actions {
@@ -331,47 +778,96 @@
   }
 }
 
-/* Dark theme support */
+/* Dark Theme Support */
 @media (prefers-color-scheme: dark) {
-  .profile-card {
+  .profile-container {
     background: #1a1a1a;
+  }
+  
+  .profile-content {
+    background: #2a2a2a;
     color: #fff;
   }
   
-  .profile-header {
+  .profile-tabs {
     border-bottom-color: #444;
   }
   
-  .profile-header h2 {
-    color: #fff;
-  }
-  
-  .profile-details h3 {
-    color: #fff;
-  }
-  
-  .user-email {
+  .tab-button {
     color: #ccc;
   }
   
-  .user-bio {
-    color: #ddd;
+  .tab-button:hover {
+    color: #667eea;
   }
   
-  .user-stats {
-    background: #2a2a2a;
+  .tab-button.active {
+    color: #667eea;
+  }
+  
+  .stat-card {
+    background: #333;
+  }
+  
+  .stat-card:hover {
+    border-color: #667eea;
+  }
+  
+  .stat-number {
+    color: #fff;
   }
   
   .stat-label {
     color: #ccc;
   }
   
-  .user-preferences h4 {
+  .recent-anime-item {
+    background: #333;
+  }
+  
+  .recent-anime-item:hover {
+    background: #444;
+  }
+  
+  .anime-info h4 {
     color: #fff;
   }
   
-  .preference-section strong {
-    color: #ddd;
+  .watchlist-item {
+    background: #333;
+  }
+  
+  .anime-details h4 {
+    color: #fff;
+  }
+  
+  .preferences-section h3 {
+    color: #fff;
+  }
+  
+  .no-preferences {
+    background: #333;
+    color: #ccc;
+  }
+  
+  .info-item {
+    background: #333;
+  }
+  
+  .info-label {
+    color: #fff;
+  }
+  
+  .info-value {
+    color: #ccc;
+  }
+  
+  .profile-edit-section {
+    background: #333;
+  }
+  
+  .profile-edit-section h3 {
+    color: #fff;
   }
   
   .profile-form label {
@@ -380,17 +876,25 @@
   
   .profile-form input,
   .profile-form textarea {
-    background: #2a2a2a;
-    border-color: #444;
+    background: #444;
+    border-color: #555;
     color: #fff;
   }
   
   .profile-form input:focus,
   .profile-form textarea:focus {
-    background: #333;
+    background: #555;
   }
   
   .help-text {
+    color: #ccc;
+  }
+  
+  .profile-error h2 {
+    color: #fff;
+  }
+  
+  .profile-error p {
     color: #ccc;
   }
 }

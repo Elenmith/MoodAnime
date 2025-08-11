@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Main.css";
 import { MoodContext } from "../../context/MoodContext";
+import { useUser } from "../../context/UserContext";
 import Carousel from "../Carousel/Carousel";
 import FeaturedAnime from "../FeaturedAnime/FeaturedAnime";
 import SEO from "../SEO/SEO";
@@ -9,6 +10,7 @@ import SEO from "../SEO/SEO";
 
 function Main() {
   const { moods } = useContext(MoodContext);
+  const { isAuthenticated } = useUser();
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredMoods, setFilteredMoods] = useState([]);
   const [animeList, setAnimeList] = useState([]);
@@ -17,6 +19,13 @@ function Main() {
   const navigate = useNavigate();
   const [featuredAnime, setFeaturedAnime] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  // Redirect authenticated users to profile
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/profile');
+    }
+  }, [isAuthenticated, navigate]);
 
   // Pobierz URL API z zmiennej środowiskowej
   const API_URL = process.env.REACT_APP_API_URL;

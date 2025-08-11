@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useUser } from '../../context/UserContext';
+import { useNavigate } from 'react-router-dom';
 import './Auth.css';
 
 const Register = ({ onSwitchToLogin }) => {
@@ -12,11 +13,19 @@ const Register = ({ onSwitchToLogin }) => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const { register, error, clearError } = useUser();
+  const { register, error, clearError, isAuthenticated } = useUser();
+  const navigate = useNavigate();
 
   useEffect(() => {
     clearError();
   }, [clearError]);
+
+  // Redirect to profile after successful registration
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/profile');
+    }
+  }, [isAuthenticated, navigate]);
 
   const handleChange = (e) => {
     setFormData({
