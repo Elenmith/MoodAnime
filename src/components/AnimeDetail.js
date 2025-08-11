@@ -117,6 +117,8 @@ const AnimeDetail = () => {
           <div className="anime-content">
             {/* Hero Section */}
             <div className="anime-hero">
+              <div className="hero-background"></div>
+              <div className="hero-overlay"></div>
               <div className="hero-content">
                 <div className="hero-poster">
                   <img src={anime.imageUrl} alt={anime.title} />

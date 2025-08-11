@@ -141,11 +141,8 @@
   font-weight: 700;
   margin: 0 0 8px 0;
   line-height: 1.1;
+  color: #ffffff;
   text-shadow: 0 4px 8px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 0.6);
-  background: linear-gradient(45deg, #ffffff, #f0f0f0);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .anime-title-english {
@@ -548,6 +545,36 @@
     rgba(0, 0, 0, 0.5) 50%,
     rgba(0, 0, 0, 0.9) 100%
   );
+}
+
+/* Light mode specific adjustments */
+.light-mode .hero-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.6) 50%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+}
+
+.light-mode .meta-label {
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.light-mode .meta-value {
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.light-mode .anime-title {
+  color: #ffffff;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9), 0 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.light-mode .anime-synopsis {
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 /* Animations */
