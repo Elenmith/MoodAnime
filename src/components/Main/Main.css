@@ -6,15 +6,16 @@
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: var(--text-primary);
+  font-family: Inter, sans-serif;
 }
 
 .main__content {
-  background-image: url('../../images/background.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   min-height: 100vh;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .main__content::before {
@@ -24,7 +25,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.3);
   z-index: 1;
 }
 
@@ -32,10 +33,11 @@
 .hero-section {
   position: relative;
   z-index: 2;
-  padding: 2rem 1rem 4rem;
+  padding: 2rem 1rem;
   text-align: center;
   max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .hero-title {
@@ -67,22 +69,24 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  max-width: 800px;
-  margin: 0 auto;
+  max-width: 900px;
+  margin: 2rem auto 0;
   padding: 2rem;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  border-radius: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
 .flow-step {
   text-align: center;
+  padding: 1rem;
 }
 
 .step-number {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
   border-radius: 50%;
   display: flex;
@@ -91,13 +95,15 @@
   font-weight: bold;
   color: white;
   margin: 0 auto 1rem;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
 }
 
 .flow-step h3 {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   margin-bottom: 1rem;
   color: white;
+  font-weight: 600;
 }
 
 .flow-arrow {
@@ -115,21 +121,22 @@
 /* Mood Grid */
 .mood-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 0.8rem;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 1rem;
   margin-top: 1rem;
 }
 
 .mood-chip {
-  padding: 0.8rem 1rem;
+  padding: 1rem 1.2rem;
   background: rgba(255, 255, 255, 0.1);
   border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 25px;
+  border-radius: 30px;
   color: white;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
   backdrop-filter: blur(5px);
+  font-size: 0.95rem;
 }
 
 .mood-chip:hover {
@@ -147,16 +154,16 @@
 /* Platform Grid */
 .platform-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 0.8rem;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
   margin-top: 1rem;
 }
 
 .platform-chip {
-  padding: 1rem;
+  padding: 1.2rem 1rem;
   background: rgba(255, 255, 255, 0.1);
   border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 15px;
+  border-radius: 20px;
   color: white;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -165,6 +172,7 @@
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+  min-height: 100px;
 }
 
 .platform-chip:hover {
