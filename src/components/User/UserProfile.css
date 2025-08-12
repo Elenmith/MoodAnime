@@ -1,32 +1,30 @@
+/* UserProfile.css - Nowa, czysta wersja */
+
+/* Główny kontener */
 .profile-container {
-  background: var(--bg-color);
   min-height: 100vh;
+  background: #f8f9fa;
 }
 
-/* Hero Section */
+/* Sekcja hero z gradientem na całą szerokość */
 .profile-hero {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 60px 20px;
-  margin-bottom: 0;
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
+  padding: 60px 0;
+  width: 100%;
+  position: relative;
 }
 
 .profile-hero-content {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 20px;
   display: flex;
   align-items: center;
   gap: 40px;
 }
 
-.profile-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
+/* Avatar */
 .profile-avatar-large {
   flex-shrink: 0;
 }
@@ -55,6 +53,7 @@
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
+/* Informacje o użytkowniku */
 .profile-hero-info {
   flex: 1;
 }
@@ -104,18 +103,20 @@
   transform: translateY(-2px);
 }
 
-/* Content Section */
+/* Główna zawartość */
 .profile-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
   background: white;
   border-radius: 20px 20px 0 0;
   margin-top: -20px;
-  padding: 40px 20px;
   position: relative;
   z-index: 1;
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Tabs */
+/* Zakładki */
 .profile-tabs {
   display: flex;
   gap: 8px;
@@ -146,12 +147,12 @@
   border-bottom-color: #667eea;
 }
 
-/* Tab Content */
+/* Zawartość zakładek */
 .profile-tab-content {
   min-height: 400px;
 }
 
-/* Overview Tab */
+/* Zakładka Overview */
 .overview-tab {
   display: flex;
   flex-direction: column;
@@ -213,7 +214,7 @@
   font-weight: 600;
 }
 
-/* Recent Activity */
+/* Ostatnia aktywność */
 .recent-activity h3 {
   margin: 0 0 20px 0;
   font-size: 24px;
@@ -292,7 +293,7 @@
   padding: 40px 20px;
 }
 
-/* Watchlist Tab */
+/* Zakładka Watchlist */
 .watchlist-tab {
   display: flex;
   flex-direction: column;
@@ -465,7 +466,7 @@
   transform: translateY(-2px);
 }
 
-/* Preferences Tab */
+/* Zakładka Preferences */
 .preferences-tab {
   display: flex;
   flex-direction: column;
@@ -533,7 +534,7 @@
   color: #666;
 }
 
-/* Edit Profile Section */
+/* Edycja profilu */
 .profile-edit-section {
   background: #f8f9fa;
   border-radius: 16px;
@@ -641,7 +642,7 @@
   transform: none;
 }
 
-/* Error and Help Messages */
+/* Komunikaty błędów i pomocy */
 .error-message {
   background: #fdf2f2;
   border: 2px solid #fecaca;
@@ -668,7 +669,7 @@
   display: block;
 }
 
-/* Loading and Error States */
+/* Stany ładowania i błędów */
 .profile-loading,
 .profile-error {
   text-align: center;
@@ -717,16 +718,12 @@
   transform: translateY(-2px);
 }
 
-/* Responsive Design */
+/* Responsywność */
 
-/* Medium screens (tablets) */
+/* Średnie ekrany (tablety) */
 @media (min-width: 769px) and (max-width: 1199px) {
-  .profile-container {
-    max-width: 1000px;
-  }
-  
   .profile-hero {
-    padding: 50px 30px;
+    padding: 50px 0;
   }
   
   .profile-hero-content {
@@ -787,10 +784,10 @@
   }
 }
 
-/* Small screens (mobile) */
+/* Małe ekrany (mobile) */
 @media (max-width: 768px) {
   .profile-hero {
-    padding: 40px 16px;
+    padding: 40px 0;
   }
   
   .profile-hero-content {
@@ -853,14 +850,10 @@
   }
 }
 
-/* Large screens (1200px and above) */
+/* Duże ekrany (1200px i więcej) */
 @media (min-width: 1200px) {
-  .profile-container {
-    max-width: 1400px;
-  }
-  
   .profile-hero {
-    padding: 80px 40px;
+    padding: 80px 0;
   }
   
   .profile-hero-content {
@@ -1034,12 +1027,8 @@
   }
 }
 
-/* Extra large screens (1600px and above) */
+/* Bardzo duże ekrany (1600px i więcej) */
 @media (min-width: 1600px) {
-  .profile-container {
-    max-width: 1600px;
-  }
-  
   .profile-hero-content {
     max-width: 1600px;
   }
@@ -1077,7 +1066,7 @@
   }
 }
 
-/* Dark Theme Support */
+/* Wsparcie dla ciemnego motywu */
 @media (prefers-color-scheme: dark) {
   .profile-container {
     background: #1a1a1a;
