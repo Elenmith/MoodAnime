@@ -20,8 +20,6 @@ function Main() {
   const [featuredAnime, setFeaturedAnime] = useState(null);
   const [loading, setLoading] = useState(true);
 
-
-
   // Pobierz URL API z zmiennej środowiskowej
   const API_URL = process.env.REACT_APP_API_URL;
 
@@ -40,6 +38,11 @@ function Main() {
   // Przekierowanie do strony z wybranym nastrojem
   const handleMoodClick = (mood) => {
     navigate(`/moods/${mood}`);
+  };
+
+  // Przekierowanie do kategorii
+  const handleGenreClick = (genre) => {
+    navigate(`/categories/${genre.toLowerCase()}`);
   };
 
   // Pobranie zróżnicowanych anime dla karuzeli
@@ -96,6 +99,16 @@ function Main() {
     fetchFeaturedAnime();
   }, [API_URL]);
 
+  // Popularne gatunki anime
+  const popularGenres = [
+    { name: "Action", icon: "⚔️", count: "2,500+", path: "action" },
+    { name: "Romance", icon: "💕", count: "1,800+", path: "romance" },
+    { name: "Comedy", icon: "😂", count: "1,600+", path: "comedy" },
+    { name: "Drama", icon: "🎭", count: "1,400+", path: "drama" },
+    { name: "Fantasy", icon: "🐉", count: "1,200+", path: "fantasy" },
+    { name: "Sci-Fi", icon: "🚀", count: "900+", path: "sci-fi" }
+  ];
+
   return (
     <>
       <SEO 
@@ -142,32 +155,95 @@ function Main() {
         {/* Content Ad */}
         {/* <AdPlaceholder position="content" category="anime" /> */}
         
-        {/* Jedna zróżnicowana karuzela */}
-        <h2 className="carousel-h2">Discover amazing anime from different genres</h2>
-        <div className="main__carousel">
-          {carouselLoading ? (
-            <div className="carousel-loading">
-              <div className="loading-spinner"></div>
-              <p>Loading amazing anime...</p>
-            </div>
-          ) : carouselError ? (
-            <div className="carousel-error">
-              <p>{carouselError}</p>
-              <button onClick={() => window.location.reload()} className="retry-button">
-                Try Again
-              </button>
-            </div>
-          ) : (
-            <Carousel animeList={animeList} />
-          )}
+        {/* Sekcja z karuzelą */}
+        <div className="section-spacing">
+          <h2 className="section-header">Discover Amazing Anime</h2>
+          <p className="section-subheader">Explore diverse anime from different genres and moods</p>
+          <div className="main__carousel">
+            {carouselLoading ? (
+              <div className="carousel-loading">
+                <div className="loading-spinner"></div>
+                <p>Loading amazing anime...</p>
+              </div>
+            ) : carouselError ? (
+              <div className="carousel-error">
+                <p>{carouselError}</p>
+                <button onClick={() => window.location.reload()} className="retry-button">
+                  Try Again
+                </button>
+              </div>
+            ) : (
+              <Carousel animeList={animeList} />
+            )}
+          </div>
         </div>
         
         {/* Inline Ad */}
         {/* <AdPlaceholder position="inline" category="figures" /> */}
         
+        {/* Sekcja popularnych gatunków */}
+        <div className="popular-genres">
+          <h2 className="section-header" style={{ color: 'white', marginTop: 0 }}>Popular Genres</h2>
+          <p className="section-subheader" style={{ color: 'rgba(255,255,255,0.8)' }}>Explore anime by your favorite genres</p>
+          <div className="genres-grid">
+            {popularGenres.map((genre, index) => (
+              <div 
+                key={index} 
+                className="genre-card"
+                onClick={() => handleGenreClick(genre.path)}
+              >
+                <span className="genre-icon">{genre.icon}</span>
+                <div className="genre-name">{genre.name}</div>
+                <div className="genre-count">{genre.count} titles</div>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        {/* Sekcja statystyk */}
+        <div className="stats-section">
+          <h2 className="section-header" style={{ color: 'white', marginTop: 0 }}>Mood4Anime Stats</h2>
+          <p className="section-subheader" style={{ color: 'rgba(255,255,255,0.8)' }}>Join thousands of anime enthusiasts</p>
+          <div className="stats-grid">
+            <div className="stat-item">
+              <span className="stat-number">10,000+</span>
+              <span className="stat-label">Anime Titles</span>
+            </div>
+            <div className="stat-item">
+              <span className="stat-number">50+</span>
+              <span className="stat-label">Mood Categories</span>
+            </div>
+            <div className="stat-item">
+              <span className="stat-number">25+</span>
+              <span className="stat-label">Genres</span>
+            </div>
+            <div className="stat-item">
+              <span className="stat-number">100K+</span>
+              <span className="stat-label">Happy Users</span>
+            </div>
+          </div>
+        </div>
+        
         {/* Karta do anime dnia */}
-        <h2 className="suggestion-h2">This is our suggestion for today!</h2>
-        <FeaturedAnime loading={loading} featuredAnime={featuredAnime} />
+        <div className="section-spacing">
+          <h2 className="section-header">Today's Pick</h2>
+          <p className="section-subheader">Our carefully selected recommendation just for you</p>
+          <FeaturedAnime loading={loading} featuredAnime={featuredAnime} />
+        </div>
+        
+        {/* Call to Action section */}
+        <div className="cta-section">
+          <h2 className="cta-title">Ready to Discover Your Perfect Anime?</h2>
+          <p className="cta-description">
+            Join our community and start exploring anime that matches your mood perfectly. 
+            Create your account to save favorites and get personalized recommendations.
+          </p>
+          {isAuthenticated ? (
+            <a href="/profile" className="cta-button">View Your Profile</a>
+          ) : (
+            <a href="/auth" className="cta-button">Get Started Now</a>
+          )}
+        </div>
       </main>
     </>
   );

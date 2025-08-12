@@ -101,6 +101,198 @@
   width: 100%; /* Karuzela zajmuje pełną szerokość */
 }
 
+/* Nowe style dla nagłówków sekcji */
+.section-header {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 3rem 0 2rem 0;
+  color: #2c3e50;
+  text-align: center;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.section-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #3498db, #e74c3c, #f39c12);
+  border-radius: 2px;
+}
+
+.section-subheader {
+  font-size: 1.2rem;
+  color: #7f8c8d;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 400;
+}
+
+/* Responsywne odstępy */
+.section-spacing {
+  margin: 4rem 0;
+  padding: 0 2rem;
+}
+
+@media (min-width: 768px) {
+  .section-spacing {
+    margin: 6rem 0;
+    padding: 0 4rem;
+  }
+  
+  .section-header {
+    font-size: 3rem;
+    margin: 4rem 0 3rem 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-spacing {
+    margin: 8rem 0;
+    padding: 0 6rem;
+  }
+  
+  .section-header {
+    font-size: 3.5rem;
+    margin: 5rem 0 4rem 0;
+  }
+}
+
+/* Nowa sekcja - Popular Genres */
+.popular-genres {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 3rem 2rem;
+  border-radius: 20px;
+  margin: 3rem auto;
+  max-width: 1200px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.genres-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.genre-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.genre-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.genre-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.genre-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.genre-count {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Sekcja statystyk */
+.stats-section {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  padding: 3rem 2rem;
+  border-radius: 20px;
+  margin: 3rem auto;
+  max-width: 1200px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.stat-item {
+  text-align: center;
+  color: white;
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+/* Call to action section */
+.cta-section {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  padding: 4rem 2rem;
+  border-radius: 20px;
+  margin: 3rem auto;
+  max-width: 1200px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.cta-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.cta-description {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.cta-button {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid white;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.cta-button:hover {
+  background: white;
+  color: #4facfe;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
 .suggestion-h2 {
   color: #161616;
 }
