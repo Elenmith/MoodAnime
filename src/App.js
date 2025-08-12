@@ -23,6 +23,8 @@ import TermsOfService from "./components/TermsOfService/TermsOfService";
 import Auth from "./components/Auth/Auth";
 import UserProfile from "./components/User/UserProfile";
 import Recommendations from "./components/Recommendations/Recommendations";
+import Discover from "./components/Discover/Discover";
+import PlatformDetail from "./components/Platform/PlatformDetail";
 // import CookieConsent from "./components/Ads/CookieConsent"; // NEW: Cookie consent
 
 function App() {
@@ -49,6 +51,8 @@ function App() {
                     <Header />
                     <Routes>
                       <Route path="/" element={<Main />} />
+                      <Route path="/discover" element={<Discover />} />
+                      <Route path="/platform/:platformId" element={<PlatformDetail />} />
                       <Route path="/categories" element={<Categories />} />
                       <Route path="/categories/:category" element={<CategoryDetail />} />
                       <Route path="/moods" element={<Moods />} />

@@ -17,7 +17,7 @@ const SEO = ({
 
   const finalTitle = title ? `${title} | ${siteTitle}` : siteTitle;
   const finalDescription = description || siteDescription;
-  const finalKeywords = keywords || 'anime recommendations, anime by mood, anime emotions, anime list, best anime, anime discovery';
+  const finalKeywords = keywords || 'anime recommendations, anime by mood, anime emotions, anime list, best anime, anime discovery, anime on netflix, anime on crunchyroll, anime on funimation, anime streaming platforms';
   const finalImage = image || siteImage;
   const finalUrl = url || siteUrl;
 

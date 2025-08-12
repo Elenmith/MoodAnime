@@ -179,7 +179,7 @@ function Main() {
         {/* Quick Discovery Section */}
         <div className="quick-discovery">
           <h2 className="section-title">Quick Discovery</h2>
-          <div className="discovery-cards">
+                      <div className="discovery-cards">
             <div className="discovery-card" onClick={() => navigate('/discover?mood=happy&platform=netflix')}>
               <div className="card-icon">😊</div>
               <h3>Happy Anime on Netflix</h3>
@@ -196,6 +196,24 @@ function Main() {
               <div className="card-icon">💕</div>
               <h3>Romance on Netflix</h3>
               <p>Beautiful love stories and relationships</p>
+            </div>
+            
+            <div className="discovery-card" onClick={() => navigate('/discover')}>
+              <div className="card-icon">🔍</div>
+              <h3>Advanced Discovery</h3>
+              <p>Customize your search with filters</p>
+            </div>
+            
+            <div className="discovery-card" onClick={() => navigate('/platform/netflix')}>
+              <div className="card-icon">🎬</div>
+              <h3>Netflix Anime Collection</h3>
+              <p>Explore all anime on Netflix</p>
+            </div>
+            
+            <div className="discovery-card" onClick={() => navigate('/platform/crunchyroll')}>
+              <div className="card-icon">🍊</div>
+              <h3>Crunchyroll Library</h3>
+              <p>Browse the largest anime collection</p>
             </div>
             
             <div className="discovery-card" onClick={() => navigate('/discover?mood=fantasy&platform=crunchyroll')}>
