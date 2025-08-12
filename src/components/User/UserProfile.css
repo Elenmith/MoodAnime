@@ -1,7 +1,4 @@
 .profile-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0;
   background: var(--bg-color);
   min-height: 100vh;
 }
@@ -12,6 +9,8 @@
   color: white;
   padding: 60px 20px;
   margin-bottom: 0;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
 }
 
 .profile-hero-content {
@@ -20,6 +19,12 @@
   display: flex;
   align-items: center;
   gap: 40px;
+}
+
+.profile-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 .profile-avatar-large {

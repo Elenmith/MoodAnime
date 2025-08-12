@@ -185,10 +185,7 @@ function Main() {
               <span className="stat-number">25+</span>
               <span className="stat-label">Genres</span>
             </div>
-            <div className="stat-item">
-              <span className="stat-number">100K+</span>
-              <span className="stat-label">Happy Users</span>
-            </div>
+
           </div>
         </div>
         
