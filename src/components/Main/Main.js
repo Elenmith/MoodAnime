@@ -20,12 +20,7 @@ function Main() {
   const [featuredAnime, setFeaturedAnime] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Redirect authenticated users to profile
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate('/profile');
-    }
-  }, [isAuthenticated, navigate]);
+
 
   // Pobierz URL API z zmiennej środowiskowej
   const API_URL = process.env.REACT_APP_API_URL;
