@@ -31,8 +31,8 @@ function App() {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/anime`) // Użyj zmiennej środowiskowej dla adresu API
-      .then((response) => setAnimeList(response.data))
+      .get(`${API_URL}/anime?limit=20`) // Użyj zmiennej środowiskowej dla adresu API
+      .then((response) => setAnimeList(response.data.anime || response.data))
       .catch((error) => console.error("Błąd podczas pobierania anime:", error));
   }, [API_URL]); 
 
