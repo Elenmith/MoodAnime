@@ -75,7 +75,7 @@
 /* Discovery Flow */
 .discovery-flow {
   display: flex;
-  flex-direction: column;
+  flex-direction: column !important;
   gap: 2rem;
   max-width: 900px;
   width: 100%;
