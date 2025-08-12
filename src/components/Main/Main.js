@@ -6,13 +6,12 @@ import { useUser } from "../../context/UserContext";
 import Carousel from "../Carousel/Carousel";
 import FeaturedAnime from "../FeaturedAnime/FeaturedAnime";
 import SEO from "../SEO/SEO";
-// import AdPlaceholder from "../Ads/AdPlaceholder"; // NEW: Import ad component
 
 function Main() {
   const { moods } = useContext(MoodContext);
   const { isAuthenticated } = useUser();
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filteredMoods, setFilteredMoods] = useState([]);
+  const [selectedMood, setSelectedMood] = useState("");
+  const [selectedPlatform, setSelectedPlatform] = useState("");
   const [animeList, setAnimeList] = useState([]);
   const [carouselLoading, setCarouselLoading] = useState(true);
   const [carouselError, setCarouselError] = useState(null);
@@ -20,37 +19,49 @@ function Main() {
   const [featuredAnime, setFeaturedAnime] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Pobierz URL API z zmiennej środowiskowej
   const API_URL = process.env.REACT_APP_API_URL;
 
-  // Zmiana na LowerCase
-  const handleInputChange = (e) => {
-    const value = e.target.value.toLowerCase();
-    setSearchTerm(value);
+  // Platformy streamingowe
+  const platforms = [
+    { id: "netflix", name: "Netflix", icon: "🎬", color: "#E50914" },
+    { id: "crunchyroll", name: "Crunchyroll", icon: "🍊", color: "#F47521" },
+    { id: "funimation", name: "Funimation", icon: "🎭", color: "#5C2D91" },
+    { id: "hbo", name: "HBO Max", icon: "📺", color: "#5F2EEA" },
+    { id: "disney", name: "Disney+", icon: "🏰", color: "#0063E5" },
+    { id: "amazon", name: "Prime Video", icon: "📦", color: "#00A8E1" }
+  ];
 
-    // Filtrowanie nastrojów na podstawie wpisanego tekstu
-    const filtered = moods.filter((mood) =>
-      mood.toLowerCase().startsWith(value)
-    );
-    setFilteredMoods(filtered);
+  // Popularne nastroje
+  const popularMoods = [
+    "Happy", "Sad", "Excited", "Relaxed", "Romantic", "Adventure", 
+    "Mystery", "Comedy", "Drama", "Action", "Fantasy", "Slice of Life"
+  ];
+
+  // Obsługa wyboru nastroju
+  const handleMoodSelect = (mood) => {
+    setSelectedMood(mood);
+    if (selectedPlatform) {
+      navigate(`/discover?mood=${mood}&platform=${selectedPlatform}`);
+    }
   };
 
-  // Przekierowanie do strony z wybranym nastrojem
-  const handleMoodClick = (mood) => {
-    navigate(`/moods/${mood}`);
+  // Obsługa wyboru platformy
+  const handlePlatformSelect = (platform) => {
+    setSelectedPlatform(platform);
+    if (selectedMood) {
+      navigate(`/discover?mood=${selectedMood}&platform=${platform}`);
+    }
   };
 
-  // Pobranie zróżnicowanych anime dla karuzeli
+  // Pobranie anime dla karuzeli
   useEffect(() => {
     const fetchRandomAnime = async () => {
       try {
         setCarouselLoading(true);
         setCarouselError(null);
         
-        // Próbuj najpierw random-categories
         let response = await fetch(`${API_URL}/api/anime/random-categories`);
         
-        // Jeśli nie działa, użyj posters jako fallback
         if (!response.ok) {
           console.log("⚠️ random-categories nie działa, używam posters jako fallback");
           response = await fetch(`${API_URL}/api/anime/posters`);
@@ -74,7 +85,7 @@ function Main() {
     fetchRandomAnime();
   }, [API_URL]);
 
-  // Ustawianie anime dnia
+  // Pobranie anime dnia
   useEffect(() => {
     const fetchFeaturedAnime = async () => {
       try {
@@ -94,58 +105,118 @@ function Main() {
     fetchFeaturedAnime();
   }, [API_URL]);
 
-
-
   return (
     <>
       <SEO 
-        title="Discover Perfect Anime for Your Mood"
-        description="Find the perfect anime based on your mood! Browse thousands of anime recommendations filtered by emotions, genres, and ratings. Discover new anime that matches your current feelings."
-        keywords="anime recommendations, anime by mood, anime emotions, anime discovery, best anime, anime list"
+        title="Find Your Next Anime - Discover Anime on Netflix, Crunchyroll & More"
+        description="Find the perfect anime on your favorite streaming platform! Discover anime on Netflix, Crunchyroll, Funimation, HBO Max and more. Get personalized recommendations based on your mood and platform."
+        keywords="anime on netflix, anime on crunchyroll, anime discovery, find anime, anime recommendations, streaming anime, netflix anime, crunchyroll anime"
         url="https://mood4anime.com"
       />
       
-      {/* Header Ad */}
-      {/* <AdPlaceholder position="header" category="anime" /> */}
-      
       <main className="main">
         <div className="main__content">
-          <div className="main_mood">
-            <h1 className="main__title">
-              Choose an anime that matches your mood
+          {/* Hero Section */}
+          <div className="hero-section">
+            <h1 className="hero-title">
+              Find Your Next <span className="highlight">Anime</span>
             </h1>
-            <div className="main__search-container">
-              <input
-                type="text"
-                placeholder="Write mood..."
-                className="main__search-input"
-                value={searchTerm}
-                onChange={handleInputChange}
-              />
+            <p className="hero-subtitle">
+              Discover amazing anime on your favorite streaming platform
+            </p>
+            
+            {/* Discovery Flow */}
+            <div className="discovery-flow">
+              <div className="flow-step">
+                <div className="step-number">1</div>
+                <h3>Choose Your Mood</h3>
+                <div className="mood-grid">
+                  {popularMoods.slice(0, 6).map((mood) => (
+                    <button
+                      key={mood}
+                      className={`mood-chip ${selectedMood === mood ? 'selected' : ''}`}
+                      onClick={() => handleMoodSelect(mood)}
+                    >
+                      {mood}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              
+              <div className="flow-arrow">→</div>
+              
+              <div className="flow-step">
+                <div className="step-number">2</div>
+                <h3>Pick Your Platform</h3>
+                <div className="platform-grid">
+                  {platforms.slice(0, 6).map((platform) => (
+                    <button
+                      key={platform.id}
+                      className={`platform-chip ${selectedPlatform === platform.id ? 'selected' : ''}`}
+                      onClick={() => handlePlatformSelect(platform.id)}
+                      style={{ '--platform-color': platform.color }}
+                    >
+                      <span className="platform-icon">{platform.icon}</span>
+                      <span className="platform-name">{platform.name}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+              
+              <div className="flow-arrow">→</div>
+              
+              <div className="flow-step">
+                <div className="step-number">3</div>
+                <h3>Get Recommendations</h3>
+                <p className="step-description">
+                  Find perfect anime that matches your mood and is available on your platform
+                </p>
+              </div>
             </div>
-            {filteredMoods.length > 0 && (
-              <ul className="main__suggestions">
-                {filteredMoods.map((mood, index) => (
-                  <li
-                    key={index}
-                    className="main__suggestion-item"
-                    onClick={() => handleMoodClick(mood)}
-                  >
-                    {mood}
-                  </li>
-                ))}
-              </ul>
-            )}
           </div>
         </div>
         
-        {/* Content Ad */}
-        {/* <AdPlaceholder position="content" category="anime" /> */}
+        {/* Quick Discovery Section */}
+        <div className="quick-discovery">
+          <h2 className="section-title">Quick Discovery</h2>
+          <div className="discovery-cards">
+            <div className="discovery-card" onClick={() => navigate('/discover?mood=happy&platform=netflix')}>
+              <div className="card-icon">😊</div>
+              <h3>Happy Anime on Netflix</h3>
+              <p>Feel-good anime to brighten your day</p>
+            </div>
+            
+            <div className="discovery-card" onClick={() => navigate('/discover?mood=action&platform=crunchyroll')}>
+              <div className="card-icon">⚡</div>
+              <h3>Action Anime on Crunchyroll</h3>
+              <p>Epic battles and thrilling adventures</p>
+            </div>
+            
+            <div className="discovery-card" onClick={() => navigate('/discover?mood=romantic&platform=netflix')}>
+              <div className="card-icon">💕</div>
+              <h3>Romance on Netflix</h3>
+              <p>Beautiful love stories and relationships</p>
+            </div>
+            
+            <div className="discovery-card" onClick={() => navigate('/discover?mood=fantasy&platform=crunchyroll')}>
+              <div className="card-icon">🐉</div>
+              <h3>Fantasy on Crunchyroll</h3>
+              <p>Magical worlds and supernatural powers</p>
+            </div>
+          </div>
+        </div>
         
-        {/* Sekcja z karuzelą */}
-        <div className="section-spacing">
-          <h2 className="section-header">Discover Amazing Anime</h2>
-          <p className="section-subheader">Explore diverse anime from different genres and moods</p>
+        {/* Featured Anime */}
+        <div className="featured-section">
+          <h2 className="section-title">Today's Pick</h2>
+          <p className="section-subtitle">Our carefully selected recommendation</p>
+          <FeaturedAnime loading={loading} featuredAnime={featuredAnime} />
+        </div>
+        
+        {/* Popular Anime Carousel */}
+        <div className="carousel-section">
+          <h2 className="section-title">Popular Anime</h2>
+          <p className="section-subtitle">Trending anime across all platforms</p>
           <div className="main__carousel">
             {carouselLoading ? (
               <div className="carousel-loading">
@@ -165,48 +236,32 @@ function Main() {
           </div>
         </div>
         
-        {/* Inline Ad */}
-        {/* <AdPlaceholder position="inline" category="figures" /> */}
-        
-        {/* Sekcja statystyk */}
-        <div className="stats-section">
-          <h2 className="section-header" style={{ color: 'white', marginTop: 0 }}>Mood4Anime Stats</h2>
-          <p className="section-subheader" style={{ color: 'rgba(255,255,255,0.8)' }}>Join thousands of anime enthusiasts</p>
-          <div className="stats-grid">
-            <div className="stat-item">
-              <span className="stat-number">10,000+</span>
-              <span className="stat-label">Anime Titles</span>
-            </div>
-            <div className="stat-item">
-              <span className="stat-number">50+</span>
-              <span className="stat-label">Mood Categories</span>
-            </div>
-            <div className="stat-item">
-              <span className="stat-number">25+</span>
-              <span className="stat-label">Genres</span>
-            </div>
-
+        {/* Platform Showcase */}
+        <div className="platforms-section">
+          <h2 className="section-title">Available Platforms</h2>
+          <p className="section-subtitle">Find anime on your favorite streaming services</p>
+          <div className="platforms-grid">
+            {platforms.map((platform) => (
+              <div key={platform.id} className="platform-card" onClick={() => navigate(`/platform/${platform.id}`)}>
+                <div className="platform-icon-large">{platform.icon}</div>
+                <h3>{platform.name}</h3>
+                <p>Discover anime on {platform.name}</p>
+              </div>
+            ))}
           </div>
         </div>
         
-        {/* Karta do anime dnia */}
-        <div className="section-spacing">
-          <h2 className="section-header">Today's Pick</h2>
-          <p className="section-subheader">Our carefully selected recommendation just for you</p>
-          <FeaturedAnime loading={loading} featuredAnime={featuredAnime} />
-        </div>
-        
-        {/* Call to Action section */}
+        {/* CTA Section */}
         <div className="cta-section">
-          <h2 className="cta-title">Ready to Discover Your Perfect Anime?</h2>
+          <h2 className="cta-title">Ready to Discover?</h2>
           <p className="cta-description">
-            Join our community and start exploring anime that matches your mood perfectly. 
-            Create your account to save favorites and get personalized recommendations.
+            Join thousands of anime fans finding their next favorite show. 
+            Get personalized recommendations based on your mood and platform.
           </p>
           {isAuthenticated ? (
             <a href="/profile" className="cta-button">View Your Profile</a>
           ) : (
-            <a href="/auth" className="cta-button">Get Started Now</a>
+            <a href="/auth" className="cta-button">Start Discovering</a>
           )}
         </div>
       </main>
