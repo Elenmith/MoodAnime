@@ -178,8 +178,8 @@
 }
 
 .stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  display: flex;
+  justify-content: space-around;
   gap: 2rem;
   margin-top: 2rem;
 }
