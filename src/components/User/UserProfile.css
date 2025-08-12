@@ -163,6 +163,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
+  width: 100%;
 }
 
 .stat-card {
@@ -174,6 +175,8 @@
   gap: 16px;
   transition: all 0.3s ease;
   border: 2px solid transparent;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .stat-card:hover {
