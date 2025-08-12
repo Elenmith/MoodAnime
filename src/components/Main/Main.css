@@ -168,8 +168,14 @@
   padding: 3rem 2rem;
   border-radius: 20px;
   margin: 3rem auto;
-  width: 100vw;
+  max-width: 1200px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 1200px) {
+  .popular-genres {
+    width: 50vw;
+  }
 }
 
 .genres-grid {
