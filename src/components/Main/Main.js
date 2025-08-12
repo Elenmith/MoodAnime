@@ -40,11 +40,6 @@ function Main() {
     navigate(`/moods/${mood}`);
   };
 
-  // Przekierowanie do kategorii
-  const handleGenreClick = (genre) => {
-    navigate(`/categories/${genre.toLowerCase()}`);
-  };
-
   // Pobranie zróżnicowanych anime dla karuzeli
   useEffect(() => {
     const fetchRandomAnime = async () => {
@@ -99,15 +94,7 @@ function Main() {
     fetchFeaturedAnime();
   }, [API_URL]);
 
-  // Popularne gatunki anime
-  const popularGenres = [
-    { name: "Action", icon: "⚔️", count: "2,500+", path: "action" },
-    { name: "Romance", icon: "💕", count: "1,800+", path: "romance" },
-    { name: "Comedy", icon: "😂", count: "1,600+", path: "comedy" },
-    { name: "Drama", icon: "🎭", count: "1,400+", path: "drama" },
-    { name: "Fantasy", icon: "🐉", count: "1,200+", path: "fantasy" },
-    { name: "Sci-Fi", icon: "🚀", count: "900+", path: "sci-fi" }
-  ];
+
 
   return (
     <>
@@ -180,25 +167,6 @@ function Main() {
         
         {/* Inline Ad */}
         {/* <AdPlaceholder position="inline" category="figures" /> */}
-        
-        {/* Sekcja popularnych gatunków */}
-        <div className="popular-genres">
-          <h2 className="section-header" style={{ color: 'white', marginTop: 0 }}>Popular Genres</h2>
-          <p className="section-subheader" style={{ color: 'rgba(255,255,255,0.8)' }}>Explore anime by your favorite genres</p>
-          <div className="genres-grid">
-            {popularGenres.map((genre, index) => (
-              <div 
-                key={index} 
-                className="genre-card"
-                onClick={() => handleGenreClick(genre.path)}
-              >
-                <span className="genre-icon">{genre.icon}</span>
-                <div className="genre-name">{genre.name}</div>
-                <div className="genre-count">{genre.count} titles</div>
-              </div>
-            ))}
-          </div>
-        </div>
         
         {/* Sekcja statystyk */}
         <div className="stats-section">

@@ -165,63 +165,7 @@
   }
 }
 
-/* Nowa sekcja - Popular Genres */
-.popular-genres {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 3rem 2rem;
-  border-radius: 20px;
-  margin: 3rem auto;
-  max-width: 1200px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-}
 
-@media (min-width: 1200px) {
-  .popular-genres {
-    width: 50vw;
-  }
-}
-
-.genres-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-
-.genre-card {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 15px;
-  padding: 1.5rem;
-  text-align: center;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.genre-card:hover {
-  transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-.genre-icon {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  display: block;
-}
-
-.genre-name {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: white;
-  margin-bottom: 0.5rem;
-}
-
-.genre-count {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.8);
-}
 
 /* Sekcja statystyk */
 .stats-section {
