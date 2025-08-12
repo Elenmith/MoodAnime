@@ -21,7 +21,8 @@ function MoodPage() {
         const response = await axios.get(
           `${API_URL}/api/anime/moods/${mood}?page=${page}&limit=16`
         );
-        setAnimeList(response.data.anime);
+        const data = response.data.anime || [];
+        setAnimeList(Array.isArray(data) ? data : []);
         setTotalPages(response.data.totalPages);
         setLoading(false);
       } catch (err) {
@@ -47,7 +48,7 @@ function MoodPage() {
       <h1>Anime for mood: {mood}</h1>
       {animeList.length > 0 ? (
         <div className="anime-grid">
-          {animeList.map((anime) => (
+          {Array.isArray(animeList) && animeList.map((anime) => (
             <div
               key={anime._id}
               className="anime-card"

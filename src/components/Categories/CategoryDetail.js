@@ -20,7 +20,8 @@ const CategoryDetail = () => {
         const res = await axios.get(
           `${API_URL}/api/anime/genre/${category}?page=${page}&limit=16`
         );
-        setAnimeList(res.data.anime);
+        const data = res.data.anime || [];
+        setAnimeList(Array.isArray(data) ? data : []);
         setTotalPages(res.data.totalPages);
         setLoading(false);
       } catch (err) {
@@ -50,7 +51,7 @@ const CategoryDetail = () => {
       ) : (
         <>
           <div className="anime-grid">
-            {animeList.map((anime) => (
+            {Array.isArray(animeList) && animeList.map((anime) => (
               <div
                 key={anime._id}
                 className="anime-card"

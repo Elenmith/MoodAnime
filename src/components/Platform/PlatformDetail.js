@@ -124,7 +124,8 @@ const PlatformDetail = () => {
       url += `&${params.toString()}`;
 
       const response = await axios.get(url);
-      setAnimeList(response.data.anime || response.data);
+      const data = response.data.anime || [];
+      setAnimeList(Array.isArray(data) ? data : []);
     } catch (err) {
       console.error('Error fetching anime:', err);
       setError('Nie udało się pobrać anime. Spróbuj ponownie.');
@@ -286,7 +287,7 @@ const PlatformDetail = () => {
             ) : (
               <>
                 <div className="anime-grid">
-                  {animeList.map((anime) => (
+                  {Array.isArray(animeList) && animeList.map((anime) => (
                     <div key={anime._id} className="anime-card" onClick={() => navigate(`/anime/${anime._id}`)}>
                       <div className="anime-image">
                         <img src={anime.imageUrl} alt={anime.title} loading="lazy" />
