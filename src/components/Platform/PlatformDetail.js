@@ -105,7 +105,12 @@ const PlatformDetail = () => {
 
   useEffect(() => {
     if (platform) {
-      fetchAnime();
+      // Debounce the API call
+      const timeoutId = setTimeout(() => {
+        fetchAnime();
+      }, 300);
+      
+      return () => clearTimeout(timeoutId);
     }
   }, [platform, selectedMood, selectedGenre]);
 
@@ -128,7 +133,13 @@ const PlatformDetail = () => {
       setAnimeList(Array.isArray(data) ? data : []);
     } catch (err) {
       console.error('Error fetching anime:', err);
-      setError('Nie udało się pobrać anime. Spróbuj ponownie.');
+      if (err.response?.status === 429) {
+        setError('Zbyt wiele zapytań. Spróbuj ponownie za chwilę.');
+      } else if (err.code === 'ERR_NETWORK') {
+        setError('Problem z połączeniem. Sprawdź połączenie internetowe.');
+      } else {
+        setError('Nie udało się pobrać anime. Spróbuj ponownie.');
+      }
     } finally {
       setLoading(false);
     }
