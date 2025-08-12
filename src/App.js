@@ -22,6 +22,7 @@ import PrivacyPolicy from "./components/PrivacyPolicy/PrivacyPolicy";
 import TermsOfService from "./components/TermsOfService/TermsOfService";
 import Auth from "./components/Auth/Auth";
 import UserProfile from "./components/User/UserProfile";
+import Recommendations from "./components/Recommendations/Recommendations";
 // import CookieConsent from "./components/Ads/CookieConsent"; // NEW: Cookie consent
 
 function App() {
@@ -59,6 +60,7 @@ function App() {
                       <Route path="termsofservice" element={<TermsOfService />} />
                       <Route path="/auth" element={<Auth />} />
                       <Route path="/profile" element={<UserProfile />} />
+                      <Route path="/recommendations" element={<Recommendations />} />
                       <Route path="*" element={<NotFound />} />
                     </Routes>
                     <Footer />

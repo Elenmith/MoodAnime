@@ -110,6 +110,8 @@ function SearchNav() {
 }
 
 function NavLinks({ isOpen, onLinkClick }) {
+  const { isAuthenticated } = useUser();
+  
   return (
     <nav className={`header__nav ${isOpen ? "is-open" : ""}`}>
       <Link to="/categories" className="header__link" onClick={onLinkClick}>
@@ -118,6 +120,11 @@ function NavLinks({ isOpen, onLinkClick }) {
       <Link to="/moods" className="header__link" onClick={onLinkClick}>
         Moods
       </Link>
+      {isAuthenticated && (
+        <Link to="/recommendations" className="header__link" onClick={onLinkClick}>
+          Recommendations
+        </Link>
+      )}
     </nav>
   );
 }
