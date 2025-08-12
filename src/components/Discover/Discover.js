@@ -11,6 +11,8 @@ const Discover = () => {
   const [animeList, setAnimeList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [cache, setCache] = useState({});
+  const [lastRequest, setLastRequest] = useState('');
   
   const selectedMood = searchParams.get('mood') || '';
   const selectedPlatform = searchParams.get('platform') || '';
@@ -96,13 +98,28 @@ const Discover = () => {
       // Debounce the API call
       const timeoutId = setTimeout(() => {
         fetchAnime();
-      }, 300);
+      }, 500);
       
       return () => clearTimeout(timeoutId);
     }
   }, [selectedMood, selectedPlatform]);
 
   const fetchAnime = async () => {
+    // Tworzymy klucz cache
+    const cacheKey = `${selectedMood}-${selectedPlatform}`;
+    
+    // Sprawdzamy czy mamy już te dane w cache
+    if (cache[cacheKey] && !loading) {
+      setAnimeList(cache[cacheKey]);
+      return;
+    }
+    
+    // Sprawdzamy czy to nie jest ten sam request
+    if (lastRequest === cacheKey) {
+      return;
+    }
+    
+    setLastRequest(cacheKey);
     setLoading(true);
     setError(null);
     
@@ -119,7 +136,15 @@ const Discover = () => {
 
       const response = await axios.get(url);
       const data = response.data.anime || [];
-      setAnimeList(Array.isArray(data) ? data : []);
+      const animeArray = Array.isArray(data) ? data : [];
+      
+      setAnimeList(animeArray);
+      
+      // Zapisujemy do cache
+      setCache(prev => ({
+        ...prev,
+        [cacheKey]: animeArray
+      }));
     } catch (err) {
       console.error('Error fetching anime:', err);
       if (err.response?.status === 429) {

@@ -12,6 +12,8 @@ const PlatformDetail = () => {
   const [error, setError] = useState(null);
   const [selectedMood, setSelectedMood] = useState('');
   const [selectedGenre, setSelectedGenre] = useState('');
+  const [cache, setCache] = useState({});
+  const [lastRequest, setLastRequest] = useState('');
 
   const API_URL = process.env.REACT_APP_API_URL;
 
@@ -105,16 +107,35 @@ const PlatformDetail = () => {
 
   useEffect(() => {
     if (platform) {
+      // Reset cache przy zmianie platformy
+      setCache({});
+      setLastRequest('');
+      
       // Debounce the API call
       const timeoutId = setTimeout(() => {
         fetchAnime();
-      }, 300);
+      }, 500);
       
       return () => clearTimeout(timeoutId);
     }
-  }, [platform, selectedMood, selectedGenre]);
+  }, [platformId, selectedMood, selectedGenre]); // Używamy platformId zamiast platform object
 
   const fetchAnime = async () => {
+    // Tworzymy klucz cache
+    const cacheKey = `${platformId}-${selectedMood}-${selectedGenre}`;
+    
+    // Sprawdzamy czy mamy już te dane w cache
+    if (cache[cacheKey] && !loading) {
+      setAnimeList(cache[cacheKey]);
+      return;
+    }
+    
+    // Sprawdzamy czy to nie jest ten sam request
+    if (lastRequest === cacheKey) {
+      return;
+    }
+    
+    setLastRequest(cacheKey);
     setLoading(true);
     setError(null);
     
@@ -130,7 +151,15 @@ const PlatformDetail = () => {
 
       const response = await axios.get(url);
       const data = response.data.anime || [];
-      setAnimeList(Array.isArray(data) ? data : []);
+      const animeArray = Array.isArray(data) ? data : [];
+      
+      setAnimeList(animeArray);
+      
+      // Zapisujemy do cache
+      setCache(prev => ({
+        ...prev,
+        [cacheKey]: animeArray
+      }));
     } catch (err) {
       console.error('Error fetching anime:', err);
       if (err.response?.status === 429) {
