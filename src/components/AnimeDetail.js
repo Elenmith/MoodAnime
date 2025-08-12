@@ -46,6 +46,9 @@ const AnimeDetail = () => {
     { name: "Netflix", url: "https://www.netflix.com" }
   ];
 
+  const [streamingData, setStreamingData] = useState(null);
+  const [streamingLoading, setStreamingLoading] = useState(false);
+
   useEffect(() => {
     const fetchAnimeDetails = async () => {
       try {
@@ -68,6 +71,9 @@ const AnimeDetail = () => {
         };
         
         setAnime(enhancedData);
+        
+        // Fetch real streaming data
+        fetchStreamingData();
       } catch (err) {
         console.error("Error fetching anime details:", err);
         setError(err.message);
@@ -78,6 +84,22 @@ const AnimeDetail = () => {
 
     fetchAnimeDetails();
   }, [id, API_URL]);
+
+  const fetchStreamingData = async () => {
+    try {
+      setStreamingLoading(true);
+      const response = await fetch(`${API_URL}/api/anime/${id}/streaming`);
+      
+      if (response.ok) {
+        const data = await response.json();
+        setStreamingData(data);
+      }
+    } catch (err) {
+      console.error("Error fetching streaming data:", err);
+    } finally {
+      setStreamingLoading(false);
+    }
+  };
 
   const handleGenreClick = (genre) => {
     navigate(`/categories/${genre.toLowerCase()}`);
@@ -260,20 +282,44 @@ const AnimeDetail = () => {
                 {/* Streaming Platforms */}
                 <section className="sidebar-section">
                   <h3>Where to Watch</h3>
-                  <div className="streaming-list">
-                    {anime.streamingPlatforms?.map((platform, index) => (
-                      <a
-                        key={index}
-                        href={platform.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="streaming-link"
-                      >
-                        <span className="platform-name">{platform.name}</span>
-                        <span className="platform-icon">→</span>
-                      </a>
-                    ))}
-                  </div>
+                  {streamingLoading ? (
+                    <div className="streaming-loading">
+                      <p>🔍 Searching...</p>
+                    </div>
+                  ) : streamingData?.streamingPlatforms?.length > 0 ? (
+                    <div className="streaming-list">
+                      {streamingData.streamingPlatforms.map((platform, index) => (
+                        <a
+                          key={index}
+                          href={platform.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="streaming-link"
+                        >
+                          <span className="platform-name">{platform.name}</span>
+                          {platform.monetization && (
+                            <span className="monetization-type">
+                              {platform.monetization === 'flatrate' ? 'Subscription' : 'Free'}
+                            </span>
+                          )}
+                          <span className="platform-icon">→</span>
+                        </a>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="no-streaming">
+                      <p>❌ Not available</p>
+                      <button onClick={fetchStreamingData} className="retry-button">
+                        🔄 Retry
+                      </button>
+                    </div>
+                  )}
+                  {streamingData?.source && (
+                    <p className="data-source">
+                      Source: {streamingData.source === 'justwatch' ? 'JustWatch' : 
+                               streamingData.source === 'database' ? 'Database' : 'Not found'}
+                    </p>
+                  )}
                 </section>
 
                 {/* Back Button */}
