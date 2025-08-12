@@ -1,0 +1,118 @@
+.test-affiliate {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.test-affiliate h2 {
+  color: #fff;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.test-affiliate p {
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.test-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.test-anime-card {
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: white;
+  text-align: center;
+}
+
+.test-anime-card:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.test-anime-card h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.test-anime-card p {
+  margin: 0 0 1rem 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
+
+.test-label {
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.test-info {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.test-info h3 {
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.test-info ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.test-info li {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.test-info li:before {
+  content: "•";
+  color: #4ecdc4;
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+.test-info code {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.2rem 0.5rem;
+  border-radius: 5px;
+  font-family: monospace;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .test-affiliate {
+    padding: 1rem;
+    margin: 1rem;
+  }
+  
+  .test-grid {
+    grid-template-columns: 1fr;
+  }
+}

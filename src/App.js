@@ -25,6 +25,7 @@ import UserProfile from "./components/User/UserProfile";
 import Recommendations from "./components/Recommendations/Recommendations";
 import Discover from "./components/Discover/Discover";
 import PlatformDetail from "./components/Platform/PlatformDetail";
+import TestAffiliate from "./components/TestAffiliate/TestAffiliate";
 // import CookieConsent from "./components/Ads/CookieConsent"; // NEW: Cookie consent
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
                       <Route path="/" element={<Main />} />
                       <Route path="/discover" element={<Discover />} />
                       <Route path="/platform/:platformId" element={<PlatformDetail />} />
+                      <Route path="/test-affiliate" element={<TestAffiliate />} />
                       <Route path="/categories" element={<Categories />} />
                       <Route path="/categories/:category" element={<CategoryDetail />} />
                       <Route path="/moods" element={<Moods />} />

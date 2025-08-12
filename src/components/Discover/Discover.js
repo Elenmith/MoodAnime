@@ -16,6 +16,8 @@ const Discover = () => {
 
   const API_URL = process.env.REACT_APP_API_URL;
 
+import { generateAffiliateLink, trackAffiliateClick } from '../../config/affiliate';
+
   // Platformy streamingowe z affiliate links
   const platforms = [
     { 
@@ -24,7 +26,8 @@ const Discover = () => {
       icon: "🎬", 
       color: "#E50914",
       affiliateUrl: "https://www.netflix.com/search?q=anime",
-      description: "Największa biblioteka anime"
+      description: "Największa biblioteka anime",
+      hasAffiliate: false // Netflix nie ma programu afiliacyjnego
     },
     { 
       id: "crunchyroll", 
@@ -32,7 +35,8 @@ const Discover = () => {
       icon: "🍊", 
       color: "#F47521",
       affiliateUrl: "https://www.crunchyroll.com/browse",
-      description: "Specjalista od anime"
+      description: "Specjalista od anime",
+      hasAffiliate: false // Crunchyroll nie ma publicznego programu
     },
     { 
       id: "funimation", 
@@ -40,7 +44,8 @@ const Discover = () => {
       icon: "🎭", 
       color: "#5C2D91",
       affiliateUrl: "https://www.funimation.com/shows/",
-      description: "Dubbing i subbing"
+      description: "Dubbing i subbing",
+      hasAffiliate: false
     },
     { 
       id: "hbo", 
@@ -48,7 +53,8 @@ const Discover = () => {
       icon: "📺", 
       color: "#5F2EEA",
       affiliateUrl: "https://play.hbomax.com/search?q=anime",
-      description: "Selekcja premium"
+      description: "Selekcja premium",
+      hasAffiliate: false
     },
     { 
       id: "disney", 
@@ -56,7 +62,8 @@ const Discover = () => {
       icon: "🏰", 
       color: "#0063E5",
       affiliateUrl: "https://www.disneyplus.com/search?q=anime",
-      description: "Studio Ghibli i więcej"
+      description: "Studio Ghibli i więcej",
+      hasAffiliate: false
     },
     { 
       id: "amazon", 
@@ -64,7 +71,8 @@ const Discover = () => {
       icon: "📦", 
       color: "#00A8E1",
       affiliateUrl: "https://www.amazon.com/Prime-Video/b?node=2858778011",
-      description: "Różnorodna kolekcja"
+      description: "Różnorodna kolekcja",
+      hasAffiliate: true // Amazon ma program Associates
     }
   ];
 
@@ -132,8 +140,19 @@ const Discover = () => {
     setAnimeList([]);
   };
 
-  const handlePlatformClick = (platform) => {
-    // Otwórz affiliate link w nowej karcie
+  const handlePlatformClick = (platform, animeTitle = 'anime') => {
+    if (platform.hasAffiliate) {
+      // Dla Amazon - generuj affiliate link
+      const affiliateUrl = generateAffiliateLink('amazon', animeTitle, 'discovery');
+      if (affiliateUrl) {
+        trackAffiliateClick('amazon', animeTitle, 'discovery');
+        window.open(affiliateUrl, '_blank', 'noopener,noreferrer');
+        return;
+      }
+    }
+    
+    // Dla innych platform - direct link
+    trackAffiliateClick(platform.id, animeTitle, 'direct');
     window.open(platform.affiliateUrl, '_blank', 'noopener,noreferrer');
   };
 
