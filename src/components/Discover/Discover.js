@@ -3,6 +3,7 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Discover.css';
 import SEO from '../SEO/SEO';
+import { generateAffiliateLink, trackAffiliateClick } from '../../config/affiliate';
 
 const Discover = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -15,8 +16,6 @@ const Discover = () => {
   const selectedPlatform = searchParams.get('platform') || '';
 
   const API_URL = process.env.REACT_APP_API_URL;
-
-import { generateAffiliateLink, trackAffiliateClick } from '../../config/affiliate';
 
   // Platformy streamingowe z affiliate links
   const platforms = [

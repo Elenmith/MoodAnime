@@ -66,8 +66,8 @@ export const generateAffiliateLink = (platform, animeTitle, type = 'search') => 
 
 export const trackAffiliateClick = (platform, animeTitle, linkType) => {
   // Google Tag Manager tracking
-  if (typeof dataLayer !== 'undefined') {
-    dataLayer.push({
+  if (typeof window !== 'undefined' && window.dataLayer) {
+    window.dataLayer.push({
       event: 'affiliate_click',
       platform: platform,
       anime_title: animeTitle,
